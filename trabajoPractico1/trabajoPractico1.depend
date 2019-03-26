@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1553589031 source:c:\users\thiag\desktop\nueva carpeta\trabajopractico1\corta.c
+
+1553589856 source:c:\users\thiag\desktop\nueva carpeta\trabajopractico1\main.c
+	<stdio.h>
+	<stdlib.h>
+	"corta.h"
+
+1553588299 c:\users\thiag\desktop\nueva carpeta\trabajopractico1\corta.h
+
