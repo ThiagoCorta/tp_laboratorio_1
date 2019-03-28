@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "corta.h"
 
 
@@ -41,14 +42,14 @@ int mostrarMenu()
 
 }
 
-int thiagoSuma(float x, float y)
+float thiagoSuma(float x, float y)
 {
 
     return x + y;
 
 }
 
-int thiagoResta(float x, float y)
+float thiagoResta(float x, float y)
 {
 
     return x - y;
@@ -67,7 +68,7 @@ float thiagoDivide(float x, float y)
    }
    else
    {
-       division=(float)x/y;
+       division=x/y;
    }
 
     return division;
@@ -76,26 +77,13 @@ float thiagoDivide(float x, float y)
 float thiagoMultiplica(float x, float y)
 {
 
-   float multiplicacion;
-
-
-
-   if(y==0)
-   {
-       printf("No se puede multiplicar por cero.\n");
-   }
-   else
-   {
-       multiplicacion=x*y;
-   }
-
-    return multiplicacion;
+    return x*y;
 }
 
 
-int thiagoFactorial(float x)
+float thiagoFactorial(float x)
 {
-   int factorial=1;
+   float factorial=1;
 
     for(;x>1;x--)
     {
@@ -123,52 +111,8 @@ int menuOperaciones()
 
 }
 
-int primerOperando ()
-{
-    int x;
-    printf("Ingrese el primer operando:\n");
-    while(scanf("%d", &x) !=1)
-    {
-        printf("Error, vuelva a ingresar el numero \n");
-        fflush(stdin);
-    }
 
-    return x;
 
-}
-
-int segundoOperando ()
-{
-    int y;
-    printf("Ingrese el segundo operando:\n");
-    while(scanf("%d", &y) !=1)
-    {
-        printf("Error, vuelva a ingresar el numero \n");
-        fflush(stdin);
-    }
-
-    return y;
-
-}
-
-void thiagoCalculaOperaciones(float x, float y)
-{
-    thiagoSuma(x,y);
-    thiagoResta(x,y);
-    thiagoDivide(x,y);
-    thiagoMultiplica(x,y);
-    thiagoFactorial(x);
-}
-
-void thiagoMuestraResultados(float x, float y)
-{
-    printf("1- El resultado de a + b : %.0f" , thiagoSuma(x,y));
-    printf("1- El resultado de a - b : %.0f", thiagoResta(x,y));
-    printf("1- El resultado de a / b : %.0f", thiagoDivide(x,y));
-    printf("1- El resultado de a * b : %.0f", thiagoMultiplica(x,y));
-    printf("1- El resultado de a! : %.0f",thiagoFactorial(x));
-
-}
 
 
 
