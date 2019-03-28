@@ -70,7 +70,14 @@ int main()
         {
             printf("    A- Calcular la suma. (%.2f+%.2f): %.2f \n", x, y, thiagoSuma(x,y));
             printf("    B- Calcular la resta. (%.2f-%.2f): %.2f \n", x, y, thiagoResta(x,y));
-            printf("    C- Calcular la division. (%.2f/%.2f): %2.f\n", x, y, thiagoDivide(x,y));
+            if(y==0)
+            {
+                printf("    No se puede dividir por cero.\n");
+            }
+            else
+            {
+                 printf("    C- Calcular la division. (%.2f/%.2f): %2.f\n", x, y, thiagoDivide(x,y));
+            }
             printf("    D- Calcular la multiplicacion. (%.2f*%.2f): %2.f \n", x, y, thiagoMultiplica(x,y));
             printf("    E- Calcular el factorial de (%.2f!) : %.2f \n", x, thiagoFactorial(x));
             printf("    F- Calcular el factorial de (%.2f!) : %.2f \n", y, thiagoFactorial(y));

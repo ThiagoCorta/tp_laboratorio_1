@@ -58,20 +58,7 @@ float thiagoResta(float x, float y)
 
 float thiagoDivide(float x, float y)
 {
-
-   float division;
-
-
-   if(y==0)
-   {
-       printf("No se puede dividir por cero.\n");
-   }
-   else
-   {
-       division=x/y;
-   }
-
-    return division;
+   return x/y;
 }
 
 float thiagoMultiplica(float x, float y)
