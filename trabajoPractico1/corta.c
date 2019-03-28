@@ -1,3 +1,8 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "corta.h"
+
+
 int obtenerMaximo (int x, int y, int z)
 {
    int max;
@@ -24,10 +29,9 @@ int mostrarMenu()
 {
     int opcion;
 
-    system("cls");
 
-    printf("1- Ingresar 1er operando. A=X : \n");
-    printf("2- Ingresar 2do operando. B=Y : \n");
+
+
     printf("3- Calcular todas las operaciones.: \n");
     printf("4- Informar resultados. : \n");
     printf("5- Salir.\n");
@@ -37,14 +41,14 @@ int mostrarMenu()
 
 }
 
-int thiagoSuma(int x, int y)
+int thiagoSuma(float x, float y)
 {
 
     return x + y;
 
 }
 
-int thiagoResta(int x, int y)
+int thiagoResta(float x, float y)
 {
 
     return x - y;
@@ -75,6 +79,7 @@ float thiagoMultiplica(float x, float y)
    float multiplicacion;
 
 
+
    if(y==0)
    {
        printf("No se puede multiplicar por cero.\n");
@@ -88,7 +93,7 @@ float thiagoMultiplica(float x, float y)
 }
 
 
-int thiagoFactorial(int x)
+int thiagoFactorial(float x)
 {
    int factorial=1;
 
@@ -117,6 +122,54 @@ int menuOperaciones()
     return opcion;
 
 }
+
+int primerOperando ()
+{
+    int x;
+    printf("Ingrese el primer operando:\n");
+    while(scanf("%d", &x) !=1)
+    {
+        printf("Error, vuelva a ingresar el numero \n");
+        fflush(stdin);
+    }
+
+    return x;
+
+}
+
+int segundoOperando ()
+{
+    int y;
+    printf("Ingrese el segundo operando:\n");
+    while(scanf("%d", &y) !=1)
+    {
+        printf("Error, vuelva a ingresar el numero \n");
+        fflush(stdin);
+    }
+
+    return y;
+
+}
+
+void thiagoCalculaOperaciones(float x, float y)
+{
+    thiagoSuma(x,y);
+    thiagoResta(x,y);
+    thiagoDivide(x,y);
+    thiagoMultiplica(x,y);
+    thiagoFactorial(x);
+}
+
+void thiagoMuestraResultados(float x, float y)
+{
+    printf("1- El resultado de a + b : %.0f" , thiagoSuma(x,y));
+    printf("1- El resultado de a - b : %.0f", thiagoResta(x,y));
+    printf("1- El resultado de a / b : %.0f", thiagoDivide(x,y));
+    printf("1- El resultado de a * b : %.0f", thiagoMultiplica(x,y));
+    printf("1- El resultado de a! : %.0f",thiagoFactorial(x));
+
+}
+
 
 
 

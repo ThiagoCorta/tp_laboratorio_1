@@ -1,3 +1,4 @@
+
 /** \brief obtiene un maximo
  *
  * \param primer entero
@@ -31,7 +32,7 @@ int obtenerMaximo (int x, int y, int z);
  *
  */
 
- int thiagoSuma(int x, int y);
+ int thiagoSuma(float x, float y);
 
  /** \brief hace una resta
  * \param primer entero
@@ -40,7 +41,7 @@ int obtenerMaximo (int x, int y, int z);
  *
  */
 
- int thiagoResta(int x, int y);
+ int thiagoResta(float x, float y);
 
   /** \brief hace una division
  * \param primer entero
@@ -67,7 +68,7 @@ int obtenerMaximo (int x, int y, int z);
  * \return el numero fatorial
  *
  */
- int thiagoFactorial(int x);
+ int thiagoFactorial(float x);
 
  /** \brief Muestra el menu
  *
@@ -83,3 +84,24 @@ int obtenerMaximo (int x, int y, int z);
 
 
  int menuOperaciones();
+
+ /** \brief toma y verifica un numero
+ *
+ * \param numero ingresado
+ * \return lo devuelve.
+ *
+ */
+
+ int primerOperando ();
+
+  /** \brief toma y verifica un numero
+ *
+ * \param numero ingresado
+ * \return lo devuelve.
+ *
+ */
+
+ int segundoOperando();
+
+
+ void thiagoMuestraResultados(float x, float y);
