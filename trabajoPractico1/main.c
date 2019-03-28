@@ -72,11 +72,11 @@ int main()
             printf("    B- Calcular la resta. (%.2f-%.2f): %.2f \n", x, y, thiagoResta(x,y));
             if(y==0)
             {
-                printf("    No se puede dividir por cero.\n");
+                printf("    C-No se puede dividir por cero.\n");
             }
             else
             {
-                 printf("    C- Calcular la division. (%.2f/%.2f): %2.f\n", x, y, thiagoDivide(x,y));
+                printf("    C- Calcular la division. (%.2f/%.2f): %2.f\n", x, y, thiagoDivide(x,y));
             }
             printf("    D- Calcular la multiplicacion. (%.2f*%.2f): %2.f \n", x, y, thiagoMultiplica(x,y));
             printf("    E- Calcular el factorial de (%.2f!) : %.2f \n", x, thiagoFactorial(x));
@@ -118,18 +118,28 @@ int main()
             bandera3=0;
             break;
         case 3:
-            bandera3=1;
+            if(bandera1==1 && bandera2==1)
+            {
+                bandera3=1;
+            }
+            else
+            {
+                printf("Debe ingresar los operando.\n\n");
+                system("pause");
+            }
+
             break;
         case 4:
-            if(bandera3==1)
+            if(bandera1==1 && bandera2==1 && bandera3==1)
             {
                 bandera4=1;
             }
             else
             {
-                printf("Primero se deben calcular las operaciones.\n\n\n");
+                printf("Primero se deben calcular las operaciones.\n\n");
                 system("pause");
             }
+
 
             break;
         case 5:
@@ -152,7 +162,6 @@ int main()
 
     return 0;
 }
-
 
 
 
