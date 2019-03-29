@@ -5,6 +5,7 @@
 
 int main()
 {
+    //Declaro las variables y si es necesario las inicializo.
     float x;
     float y;
     int bandera1=0;
@@ -14,9 +15,11 @@ int main()
     int opcion;
     char seguir='s';
 
+    //Iteraciones hasta que la persona decida salir.
     do
     {
-
+        //Menu de opciones.
+        // Uso de la primer bandera para poder actualizar los valores ingresados.
         system("cls");
         if (bandera1==0)
         {
@@ -28,6 +31,7 @@ int main()
 
         }
 
+        // Uso de la segunda bandera para poder actualizar los valores ingresados.
         if(bandera2==0)
         {
             printf("2- Ingresar 2do operando (B=Y)\n");
@@ -39,7 +43,7 @@ int main()
 
         printf("3- Calcular las operaciones.\n");
 
-
+        // Un switch para actualizar los valores cuando el usuario ingresa las opciones.
         switch(bandera3)
         {
         case 0:
@@ -59,28 +63,41 @@ int main()
             printf("    E- Calcular el factorial de (%.2f!): \n", x);
             printf("    F- Calcular el factorial de (%.2f!) : \n", y);
             break;
-        case 2:
-            printf("Se calcularon todas las operaciones.\n");
-            system("pause");
-            break;
         }
         printf("4- Mostrar las operaciones\n");
 
+        // Una ves que ingresaron valores, calcularon las operaciones si ingresa opcion 4 se muestran los resultados.
         if(bandera4==1)
         {
             printf("    A- Calcular la suma. (%.2f+%.2f): %.2f \n", x, y, thiagoSuma(x,y));
             printf("    B- Calcular la resta. (%.2f-%.2f): %.2f \n", x, y, thiagoResta(x,y));
             if(y==0)
             {
-                printf("    C-No se puede dividir por cero.\n");
+                printf("    C- No se puede dividir por cero.\n");
             }
             else
             {
                 printf("    C- Calcular la division. (%.2f/%.2f): %2.f\n", x, y, thiagoDivide(x,y));
             }
             printf("    D- Calcular la multiplicacion. (%.2f*%.2f): %2.f \n", x, y, thiagoMultiplica(x,y));
-            printf("    E- Calcular el factorial de (%.2f!) : %.2f \n", x, thiagoFactorial(x));
-            printf("    F- Calcular el factorial de (%.2f!) : %.2f \n", y, thiagoFactorial(y));
+            if(x>0)
+            {
+                printf("    E- Calcular el factorial de (%.2f!) : %.2f \n", x, thiagoFactorial(x));
+
+            }
+            else
+            {
+                printf("    No se puede calcular el factorial de numeros negativos.\n");
+            }
+            if(y>0)
+            {
+                printf("    F- Calcular el factorial de (%.2f!) : %.2f \n", y, thiagoFactorial(y));
+            }
+            else
+            {
+                printf("    No se puede calcular el factorial de numeros negativos.\n");
+            }
+
         }
         else
         {
@@ -93,24 +110,28 @@ int main()
         }
         printf("5- Salir \n");
 
+        //Si x e y tienen valores cargados, aparece la opcion de ingresar nuevos operandos.
         if(bandera1==1 && bandera2==1)
         {
             printf("6- Ingresar nuevos operandos.\n");
         }
 
-
+        //Scaneo la opcion ingresada.
         scanf("%d", &opcion);
         system("cls");
 
+        //Switch con las opciones y dandole uso a las banderas.
         switch(opcion)
         {
         case 1:
+            //Pido el operando x
             printf("Ingrese el primer operando:\n");
             scanf("%f", &x);
 
             bandera1=1;
             break;
         case 2:
+            //Pido el operando y
             printf("Ingrese el primer operando:\n");
             scanf("%f", &y);
 
@@ -118,6 +139,7 @@ int main()
             bandera3=0;
             break;
         case 3:
+            //Si no ingreso operandos no se pueden calcular las operaciones.
             if(bandera1==1 && bandera2==1)
             {
                 bandera3=1;
@@ -130,6 +152,7 @@ int main()
 
             break;
         case 4:
+            // Si no se ingresaron operandos y calcularon las operaciones, no se puede mostrar los resultados.
             if(bandera1==1 && bandera2==1 && bandera3==1)
             {
                 bandera4=1;
@@ -146,6 +169,7 @@ int main()
             seguir='n';
             break;
         case 6:
+            //En el caso 6 declaro todas las banderas en 0 para ingresar y calcular nuevos operandos.
             bandera1=0;
             bandera2=0;
             bandera3=0;
@@ -153,6 +177,7 @@ int main()
             break;
 
         default:
+            //Si no ingresa una opcion del menu valida, aparece este mensaje y te pide que ingreses uno valido.
             printf("Ingrese una opcion valida.\n\n");
             system("pause");
             break;

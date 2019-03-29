@@ -70,7 +70,7 @@ float thiagoMultiplica(float x, float y)
 
 float thiagoFactorial(float x)
 {
-   float factorial=1;
+   long long factorial=1;
 
     for(;x>1;x--)
     {
