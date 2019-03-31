@@ -42,35 +42,37 @@ int mostrarMenu()
 
 }
 
-float thiagoSuma(float x, float y)
+int thiagoSuma(int x, int y)
 {
 
     return x + y;
 
 }
 
-float thiagoResta(float x, float y)
+int thiagoResta(int x, int y)
 {
 
     return x - y;
 
 }
 
-float thiagoDivide(float x, float y)
+float thiagoDivide(int x, int y)
 {
-   return x/y;
+    float division;
+    division= (float) x / y;
+    return division;
 }
 
-float thiagoMultiplica(float x, float y)
+int thiagoMultiplica(int x, int y)
 {
 
     return x*y;
 }
 
 
-float thiagoFactorial(float x)
+double thiagoFactorial(int x)
 {
-   long long factorial=1;
+   double factorial=1;
 
     for(;x>1;x--)
     {

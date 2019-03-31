@@ -32,7 +32,7 @@ int obtenerMaximo (int x, int y, int z);
  *
  */
 
- float thiagoSuma(float x, float y);
+ int thiagoSuma(int x, int y);
 
  /** \brief hace una resta
  * \param primer entero
@@ -41,7 +41,7 @@ int obtenerMaximo (int x, int y, int z);
  *
  */
 
- float thiagoResta(float x, float y);
+ int thiagoResta(int x, int y);
 
   /** \brief hace una division
  * \param primer entero
@@ -50,7 +50,7 @@ int obtenerMaximo (int x, int y, int z);
  *
  */
 
- float thiagoDivide(float x, float y);
+ float thiagoDivide(int x, int y);
 
 
 
@@ -61,14 +61,14 @@ int obtenerMaximo (int x, int y, int z);
  *
  */
 
- float thiagoMultiplica(float x, float y);
+ int thiagoMultiplica(int x, int y);
 
    /** \brief Un bucle for que calcura el factorial del numero ing
  * \param primer entero ingresado
  * \return el numero fatorial
  *
  */
- float thiagoFactorial(float x);
+double thiagoFactorial(int x);
 
  /** \brief Muestra el menu
  *

@@ -6,8 +6,8 @@
 int main()
 {
     //Declaro las variables y si es necesario las inicializo.
-    float x;
-    float y;
+    int x;
+    int y;
     int bandera1=0;
     int bandera2=0;
     int bandera3=0;
@@ -27,7 +27,7 @@ int main()
         }
         else
         {
-            printf("1- Ingresar 1er operando (A=%.2f)\n", x);
+            printf("1- Ingresar 1er operando (A=%d)\n", x);
 
         }
 
@@ -38,7 +38,7 @@ int main()
         }
         else
         {
-            printf("2- Ingresar 2do operando (B=%.2f)\n", y);
+            printf("2- Ingresar 2do operando (B=%d)\n", y);
         }
 
         printf("3- Calcular las operaciones.\n");
@@ -56,42 +56,42 @@ int main()
             break;
 
         case 1:
-            printf("    A- Calcular la suma (%.2f+%.2f): \n", x, y);
-            printf("    B- Calcular la resta (%.2f-%.2f): \n", x, y);
-            printf("    C- Calcular la division (%.2f/%.2f): \n", x, y);
-            printf("    D- Calcular la multiplicacion (%.2f*%.2f): \n", x, y);
-            printf("    E- Calcular el factorial de (%.2f!): \n", x);
-            printf("    F- Calcular el factorial de (%.2f!) : \n", y);
+            printf("    A- Calcular la suma (%d+%d): \n", x, y);
+            printf("    B- Calcular la resta (%d-%d): \n", x, y);
+            printf("    C- Calcular la division (%d/%d): \n", x, y);
+            printf("    D- Calcular la multiplicacion (%d*%d): \n", x, y);
+            printf("    E- Calcular el factorial de (%d!): \n", x);
+            printf("    F- Calcular el factorial de (%d!) : \n", y);
             break;
         }
         printf("4- Mostrar las operaciones\n");
 
-        // Una ves que ingresaron valores, calcularon las operaciones si ingresa opcion 4 se muestran los resultados.
+        // Una ves que ingresaron valores, calcularon las operaciones, si ingresa opcion 4 se muestran los resultados.
         if(bandera4==1)
         {
-            printf("    A- Calcular la suma. (%.2f+%.2f): %.2f \n", x, y, thiagoSuma(x,y));
-            printf("    B- Calcular la resta. (%.2f-%.2f): %.2f \n", x, y, thiagoResta(x,y));
+            printf("    A- Calcular la suma. (%d+%d): %d \n", x, y, thiagoSuma(x,y));
+            printf("    B- Calcular la resta. (%d-%d): %d \n", x, y, thiagoResta(x,y));
             if(y==0)
             {
                 printf("    C- No se puede dividir por cero.\n");
             }
             else
             {
-                printf("    C- Calcular la division. (%.2f/%.2f): %2.f\n", x, y, thiagoDivide(x,y));
+                printf("    C- Calcular la division. (%d/%d): %.2f\n", x, y, thiagoDivide(x,y));
             }
-            printf("    D- Calcular la multiplicacion. (%.2f*%.2f): %2.f \n", x, y, thiagoMultiplica(x,y));
-            if(x>0)
+            printf("    D- Calcular la multiplicacion. (%d*%d): %d \n", x, y, thiagoMultiplica(x,y));
+            if(x>=0)
             {
-                printf("    E- Calcular el factorial de (%.2f!) : %.2f \n", x, thiagoFactorial(x));
+                printf("    E- Calcular el factorial de (%d!) : %.0f \n", x, thiagoFactorial(x));
 
             }
             else
             {
                 printf("    No se puede calcular el factorial de numeros negativos.\n");
             }
-            if(y>0)
+            if(y>=0)
             {
-                printf("    F- Calcular el factorial de (%.2f!) : %.2f \n", y, thiagoFactorial(y));
+                printf("    F- Calcular el factorial de (%d!) : %.0f \n", y, thiagoFactorial(y));
             }
             else
             {
@@ -126,14 +126,14 @@ int main()
         case 1:
             //Pido el operando x
             printf("Ingrese el primer operando:\n");
-            scanf("%f", &x);
+            scanf("%d", &x);
 
             bandera1=1;
             break;
         case 2:
             //Pido el operando y
             printf("Ingrese el primer operando:\n");
-            scanf("%f", &y);
+            scanf("%d", &y);
 
             bandera2=1;
             bandera3=0;
@@ -186,6 +186,7 @@ int main()
     }while(seguir=='s');
 
     return 0;
+
 }
 
 
