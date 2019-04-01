@@ -69,20 +69,20 @@ int main()
         // Una ves que ingresaron valores, calcularon las operaciones, si ingresa opcion 4 se muestran los resultados.
         if(bandera4==1)
         {
-            printf("    A- Calcular la suma. (%d+%d): %d \n", x, y, thiagoSuma(x,y));
-            printf("    B- Calcular la resta. (%d-%d): %d \n", x, y, thiagoResta(x,y));
+            printf("    A- El resultado de (%d+%d) es: %d \n", x, y, thiagoSuma(x,y));
+            printf("    B- El resultado de (%d-%d) es: %d \n", x, y, thiagoResta(x,y));
             if(y==0)
             {
                 printf("    C- No se puede dividir por cero.\n");
             }
             else
             {
-                printf("    C- Calcular la division. (%d/%d): %.2f\n", x, y, thiagoDivide(x,y));
+                printf("    C- El resultado de (%d/%d) es: %.2f\n", x, y, thiagoDivide(x,y));
             }
-            printf("    D- Calcular la multiplicacion. (%d*%d): %d \n", x, y, thiagoMultiplica(x,y));
+            printf("    D- El resultado de (%d*%d) es: %d \n", x, y, thiagoMultiplica(x,y));
             if(x>=0)
             {
-                printf("    E- Calcular el factorial de (%d!) : %.0f \n", x, thiagoFactorial(x));
+                printf("    E- El factorial de (%d!) es: %.0f \n", x, thiagoFactorial(x));
 
             }
             else
@@ -91,7 +91,7 @@ int main()
             }
             if(y>=0)
             {
-                printf("    F- Calcular el factorial de (%d!) : %.0f \n", y, thiagoFactorial(y));
+                printf("    F- El factorial de (%d!) es: %.0f \n", y, thiagoFactorial(y));
             }
             else
             {
