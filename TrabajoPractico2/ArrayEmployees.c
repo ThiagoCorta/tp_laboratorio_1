@@ -13,11 +13,13 @@ int menuAbm()
     system("cls");
     fflush(stdin);
 
-    printf("    1- Alta empleado: \n");
-    printf("    2- Baja empleado: \n");
-    printf("    3- Modificar empleado:  \n");
-    printf("    4- Mostrar Empleados: \n");
-    printf("    5- Salir: \n");
+    printf("|**************MENU ABM TP2**************|\n");
+    printf("\n 1- Alta empleado:\n");
+    printf(" 2- Baja empleado:\n");
+    printf(" 3- Modificar empleado:\n");
+    printf(" 4- Mostrar Empleados: \n");
+    printf(" 5- Salir:");
+    printf("\n\n Ingresar opcion : ");
 
     scanf("%d", &opcion);
 
@@ -135,6 +137,24 @@ int findEmployeeById(eEmpleado* list, int len,int id)
 
 }
 
+char preguntarSiEstaSeguro(char* msg, char* msgerror)
+{
+    char confirma;
+
+    printf("%s", msg);
+    fflush(stdin);
+    confirma = tolower(getche());
+
+    while(confirma!='s' && confirma!='n')
+    {
+        printf("%s", msgerror);
+        fflush(stdin);
+        confirma = tolower(getche());
+    }
+
+    return confirma;
+}
+
 int removeEmployee(eEmpleado* list, int len, int id)
 {
     int todoOk = -1;
@@ -144,9 +164,17 @@ int removeEmployee(eEmpleado* list, int len, int id)
 
     if(esta!=-1)
     {
-        list[esta].isEmpty=0;
-        todoOk=1;
-        printf("Empleado dado de baja.\n\n");
+        if(preguntarSiEstaSeguro("Desea dar de baja el empleado s/n : ", "Error ingresar s/n : ")=='s')
+        {
+            list[esta].isEmpty=0;
+            todoOk=1;
+            printf("Empleado dado de baja.\n\n");
+        }
+        else
+        {
+            printf("\nEl empleado NO fude dado de baja.\n");
+        }
+
     }
     else
     {
@@ -165,7 +193,7 @@ void sortEmployees(eEmpleado* list, int len)
     {
         for(int j=i+1; j<len; j++)
         {
-            if(list[i].sector>list[j].sector)
+            if(list[i].sector>list[j].sector && list[i].isEmpty==1 && list[j].isEmpty==1)
             {
                 auxEmpleado=list[i];
                 list[i]=list[j];
@@ -173,7 +201,7 @@ void sortEmployees(eEmpleado* list, int len)
             }
             else
             {
-                if(list[i].sector==list[j].sector && (stricmp(list[i].lastName, list[j].lastName)==1))
+                if(list[i].sector==list[j].sector && (stricmp(list[i].lastName, list[j].lastName)==1) && list[i].isEmpty==1 && list[j].isEmpty==1)
                 {
                     auxEmpleado=list[i];
                     list[i]=list[j];
@@ -222,29 +250,12 @@ int menuModificar()
     int opcion;
 
     system("cls");
-    printf("1- Modificar nombre.\n2- Modificar apellido. \n3- Modificar sueldo. \n4- Modificar sector.\n5-Salir ");
+    fflush(stdin);
+    printf("1- Modificar nombre.\n2- Modificar apellido. \n3- Modificar sueldo. \n4- Modificar sector.\n5-Volver al menu principal\n\n Ingresar opcion :  ");
     scanf("%d", &opcion);
 
     return opcion;
 
-}
-
-char preguntarSiEstaSeguro(char* msg, char* msgerror)
-{
-    char confirma;
-
-    printf("%s", msg);
-    fflush(stdin);
-    confirma = tolower(getche());
-
-    while(confirma!='s' && confirma!='n')
-    {
-        printf("%s", msgerror);
-        fflush(stdin);
-        confirma = tolower(getche());
-    }
-
-    return confirma;
 }
 
 
@@ -278,28 +289,28 @@ void modifyEmployee(eEmpleado* list, int len)
             switch(menuModificar())
         {
         case 1 :
-            if(preguntarSiEstaSeguro("Desea cambiar el nombre del empleado s/n\n", "Error ingresar s/n \n")=='s')
+            if(preguntarSiEstaSeguro("Desea cambiar el nombre del empleado s/n : ", "Error ingresar s/n : ")=='s')
             {
-                utn_getCadena(auxChar,50,3,"Ingresar nuevo nombre : \n", "Error ingresar nombre valido : \n");
-                strcpy(auxChar,list[esta].name);
+                utn_getCadena(auxChar,50,3,"\nIngresar nuevo nombre : \n", "\nError ingresar nombre valido : \n");
+                strcpy(list[esta].name,auxChar);
                 printf("Empleado modificado con exito!..\n\n");
                 system("pause");
             }
 
             break;
         case 2 :
-            if(preguntarSiEstaSeguro("Desea cambiar el nombre del empleado s/n\n", "Error ingresar s/n \n")=='s')
+            if(preguntarSiEstaSeguro("Desea cambiar el apellido del empleado s/n : ", "Error ingresar s/n : ")=='s')
             {
-                utn_getCadena(auxChar,50,3,"Ingresar nuevo apellido : \n", "Error ingresar apellido valido : \n");
-                strcpy(auxChar,list[esta].lastName);
+                utn_getCadena(auxChar,50,3,"\nIngresar nuevo apellido : \n", "\nError ingresar apellido valido : \n");
+                strcpy(list[esta].lastName,auxChar);
                 printf("Empleado modificado con exito!..\n\n");
                 system("pause");
             }
             break;
         case 3 :
-            if(preguntarSiEstaSeguro("Desea cambiar el nombre del empleado s/n\n", "Error ingresar s/n \n")=='s')
+            if(preguntarSiEstaSeguro("Desea cambiar el sueldo del empleado s/n : ", "Error ingresar s/n \n")=='s')
             {
-                utn_getFlotante(&auxFloat,3,"Ingresar nuevo sueldo : \n", "Error ingresar sueldo valido : \n", 0,150000);
+                utn_getFlotante(&auxFloat,3,"\nIngresar nuevo sueldo : \n", "\nError ingresar sueldo valido : \n", 0,150000);
                 list[esta].salary=auxFloat;
                 printf("Empleado modificado con exito!..\n\n");
                 system("pause");
@@ -307,9 +318,9 @@ void modifyEmployee(eEmpleado* list, int len)
 
             break;
         case 4 :
-            if(preguntarSiEstaSeguro("Desea cambiar el nombre del empleado s/n\n", "Error ingresar s/n \n")=='s')
+            if(preguntarSiEstaSeguro("Desea cambiar el sector del empleado s/n : " , "Error ingresar s/n : ")=='s')
             {
-                 utn_getEntero(&auxInt,3,"Ingresar nuevo sector : \n", "Error ingresar sector valido : \n",0,5);
+                 utn_getEntero(&auxInt,3,"\nIngresar nuevo sector : \n", "Error ingresar sector valido : \n",0,5);
                 list[esta].sector=auxInt;
                 printf("Empleado modificado con exito!..\n\n");
                 system("pause");
@@ -397,6 +408,4 @@ void hardCodearEmpleados(eEmpleado vec[], int tam)
     }
 
 }
-
-
 

@@ -186,3 +186,21 @@ int isLetras(char*pAux){
     }
     return retorno;
 }
+
+int validateFlag(int* flag, char* msgError)
+{
+    int todoOk=-1;
+
+    if(*flag==1)
+    {
+        todoOk=0;
+    }
+    else
+    {
+        printf("%s", msgError);
+        system("pause");
+
+    }
+
+    return todoOk;
+}
