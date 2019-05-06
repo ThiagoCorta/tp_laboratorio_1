@@ -95,7 +95,6 @@ int getIdEmployee(eEmpleado* list, int len)
 
 }
 
-
 void addEmployee(eEmpleado* list, int len, char name[],char lastName[],float salary,int sector)
 {
     int indice;
@@ -406,6 +405,22 @@ void hardCodearEmpleados(eEmpleado vec[], int tam)
     {
         vec[i]= empleados[i];
     }
+
+}
+
+int listEmpty(eEmpleado* list, int len)
+{
+    int todoOk=-1;
+
+    for(int i = 0; i< len; i++)
+    {
+        if(list[i].isEmpty!=0)
+        {
+            todoOk=0;
+        }
+    }
+
+    return todoOk;
 
 }
 

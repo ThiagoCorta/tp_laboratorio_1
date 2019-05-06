@@ -22,11 +22,11 @@ int main()
    eEmpleado empleados[TAM];
 
    initEmployees(empleados,TAM);
-   ///hardCodearEmpleados(empleados,12);
+   //hardCodearEmpleados(empleados,12);
 
    do{
-        auxInt=findEmployeeById(empleados,TAM,100);
-        if(auxInt!=-1 && empleados[auxInt].isEmpty==1)
+
+        if(listEmpty(empleados,TAM)==0)
         {
             flag=1;
         }
@@ -88,7 +88,7 @@ int main()
 
     }while(seguir=='s');
 
-
-
 }
+
+
 

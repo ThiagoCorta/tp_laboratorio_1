@@ -26,4 +26,5 @@ void modifyEmployee(eEmpleado* list, int len);
 void hardCodearEmpleados(eEmpleado vec[], int tam);
 int infoSueldos(eEmpleado* list, int len,float* pFloatProm,float* pFloatTotal, int* pIntCant);
 int validateFlag(int* flag, char* msgError);
+int listEmpty(eEmpleado* list, int len);
 

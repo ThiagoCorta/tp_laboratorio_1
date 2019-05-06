@@ -61,3 +61,34 @@
 	"utn.h"
 	"ArrayEmployees.h"
 
+1557182340 source:c:\users\alumno\desktop\trabajopractico2\arrayemployees.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<ctype.h>
+	"utn.h"
+	"ArrayEmployees.h"
+
+1557180686 c:\users\alumno\desktop\trabajopractico2\utn.h
+
+1557182361 c:\users\alumno\desktop\trabajopractico2\arrayemployees.h
+
+1557180686 source:c:\users\alumno\desktop\trabajopractico2\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<ctype.h>
+	"utn.h"
+	"ArrayEmployees.h"
+
+1557182730 source:c:\users\alumno\desktop\trabajopractico2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<ctype.h>
+	"utn.h"
+	"ArrayEmployees.h"
+
