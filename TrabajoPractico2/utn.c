@@ -216,7 +216,7 @@ int validarMail(char *pAux)
     {
         for(i=0; i<strlen(pAux); i++)
         {
-            if(i==0&&(pAux[i]==64||pAux[i]==46)||pAux[i]==32)
+            if(i==0&&(pAux[i]==64||pAux[i]==46||pAux[i]==32))
             {
                 break;
             }

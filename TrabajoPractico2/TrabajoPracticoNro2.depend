@@ -30,7 +30,7 @@
 
 1556953790 c:\users\thiag\desktop\trabajopracticonro2\arrayemployees.h
 
-1557028090 source:c:\users\thiag\desktop\trabajopractico2\utn.c
+1557424848 source:c:\users\thiag\desktop\trabajopractico2\utn.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -39,11 +39,11 @@
 	"utn.h"
 	"ArrayEmployees.h"
 
-1556951531 c:\users\thiag\desktop\trabajopractico2\utn.h
+1557296191 c:\users\thiag\desktop\trabajopractico2\utn.h
 
-1557029569 c:\users\thiag\desktop\trabajopractico2\arrayemployees.h
+1557296191 c:\users\thiag\desktop\trabajopractico2\arrayemployees.h
 
-1557029188 source:c:\users\thiag\desktop\trabajopractico2\arrayemployees.c
+1557296191 source:c:\users\thiag\desktop\trabajopractico2\arrayemployees.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -52,7 +52,7 @@
 	"utn.h"
 	"ArrayEmployees.h"
 
-1557029062 source:c:\users\thiag\desktop\trabajopractico2\main.c
+1557425704 source:c:\users\thiag\desktop\trabajopractico2\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
