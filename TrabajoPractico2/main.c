@@ -12,14 +12,6 @@
 
 int main()
 {
-
-
-
-    /*IMPORTANTE, el warning del STRICMP no supe como sacarlo, consulte con el profesor y con varios companieros y a muchos
-      les pasaba lo mismo y el profesor tampoco supo como sacarlo.
-    */
-
-
     //Declaro variables necesarias.
 
    int auxInt;

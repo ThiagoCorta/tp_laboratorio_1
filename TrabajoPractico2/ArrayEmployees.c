@@ -27,12 +27,20 @@ return opcion;
 }
 
 
-void initEmployees(eEmpleado* list, int len)
+int initEmployees(eEmpleado* list, int len)
 {
+    int todoOk=-1;
     for(int i = 0 ; i < len ; i++)
     {
         list[i].isEmpty=0;
     }
+
+    if(listEmpty(list,len)==0)
+    {
+        todoOk=0;
+    }
+
+    return todoOk;
 
 }
 
@@ -52,58 +60,29 @@ int findEmptySlot(eEmpleado* list, int len)
     return todoOk;
 }
 
-int getIdEmployee(eEmpleado* list, int len)
+int getIdEmployee()
 {
 
-    int index;
-    int idAnt;
-    int id = -1;
+    static int id= 99;
 
-    index=findEmptySlot(list,len);
-
-    if(index==0)
-    {
-        id=100;
-    }
-    else
-    {
-        idAnt=list[index-1].id;
-        id=idAnt+1;
-    }
-
-    while(findEmployeeById(list,len,id)!=-1)
-    {
-        id++;
-    }
+    id++;
 
     return id;
 
-
-/*
-    int indexLibre=findEmptySlot(list,len);
-    int idAnterior;
-    int id=-1;
-
-    if(indexLibre==0){
-        id=1;
-    }else{
-        idAnterior=list[indexLibre-1].id;
-        id=idAnterior+1;
-    }*/
-
-//return id;
-
 }
 
-void addEmployee(eEmpleado* list, int len, char name[],char lastName[],float salary,int sector)
+int addEmployee(eEmpleado* list, int len, char name[],char lastName[],float salary,int sector)
 {
     int indice;
+    int todoOk=-1;
 
     indice=findEmptySlot(list,len);
 
     if(indice!=-1)
     {
-        list[indice].id = getIdEmployee(list,len);
+        list[indice].id = getIdEmployee();
+        ajustarNombre(name);
+        ajustarNombre(lastName);
         strcpy(list[indice].name,name);
         strcpy(list[indice].lastName,lastName);
         list[indice].salary=salary;
@@ -111,12 +90,14 @@ void addEmployee(eEmpleado* list, int len, char name[],char lastName[],float sal
         list[indice].isEmpty=1;
 
         printf("\nEmpleado ingresado con Exito!!.\n");
+        todoOk=0;
     }
     else
     {
         printf("\nNo hay mas espacio para nuevos empleados.\n");
     }
 
+    return todoOk;
 }
 
 int findEmployeeById(eEmpleado* list, int len,int id)
@@ -184,8 +165,9 @@ int removeEmployee(eEmpleado* list, int len, int id)
 
 }
 
-void sortEmployees(eEmpleado* list, int len)
+int sortEmployees(eEmpleado* list, int len)
 {
+    int todoOk=-1;
      eEmpleado auxEmpleado;
 
     for(int i = 0 ; i<len-1; i++)
@@ -200,7 +182,7 @@ void sortEmployees(eEmpleado* list, int len)
             }
             else
             {
-                if(list[i].sector==list[j].sector && (stricmp(list[i].lastName, list[j].lastName)==1) && list[i].isEmpty==1 && list[j].isEmpty==1)
+                if(list[i].sector==list[j].sector && (strcmp(list[i].lastName, list[j].lastName)==1) && list[i].isEmpty==1 && list[j].isEmpty==1)
                 {
                     auxEmpleado=list[i];
                     list[i]=list[j];
@@ -208,8 +190,12 @@ void sortEmployees(eEmpleado* list, int len)
                 }
             }
         }
-}
-
+        if(i==len)
+        {
+            todoOk=0;
+        }
+    }
+    return todoOk;
 }
 
 
@@ -258,7 +244,7 @@ int menuModificar()
 }
 
 
-void modifyEmployee(eEmpleado* list, int len)
+int modifyEmployee(eEmpleado* list, int len)
 {
 
     int id;
@@ -267,6 +253,7 @@ void modifyEmployee(eEmpleado* list, int len)
     float auxFloat;
     char auxChar[51];
     char seguir='s';
+    int todoOk=-1;
 
 
     printEmployees(list,len);
@@ -293,6 +280,7 @@ void modifyEmployee(eEmpleado* list, int len)
                 utn_getCadena(auxChar,50,3,"\nIngresar nuevo nombre : \n", "\nError ingresar nombre valido : \n");
                 strcpy(list[esta].name,auxChar);
                 printf("Empleado modificado con exito!..\n\n");
+                todoOk=0;
                 system("pause");
             }
 
@@ -303,6 +291,7 @@ void modifyEmployee(eEmpleado* list, int len)
                 utn_getCadena(auxChar,50,3,"\nIngresar nuevo apellido : \n", "\nError ingresar apellido valido : \n");
                 strcpy(list[esta].lastName,auxChar);
                 printf("Empleado modificado con exito!..\n\n");
+                todoOk=0;
                 system("pause");
             }
             break;
@@ -312,6 +301,7 @@ void modifyEmployee(eEmpleado* list, int len)
                 utn_getFlotante(&auxFloat,3,"\nIngresar nuevo sueldo : \n", "\nError ingresar sueldo valido : \n", 0,150000);
                 list[esta].salary=auxFloat;
                 printf("Empleado modificado con exito!..\n\n");
+                todoOk=0;
                 system("pause");
             }
 
@@ -322,6 +312,7 @@ void modifyEmployee(eEmpleado* list, int len)
                  utn_getEntero(&auxInt,3,"\nIngresar nuevo sector : \n", "Error ingresar sector valido : \n",0,5);
                 list[esta].sector=auxInt;
                 printf("Empleado modificado con exito!..\n\n");
+                todoOk=0;
                 system("pause");
             }
 
@@ -343,7 +334,7 @@ void modifyEmployee(eEmpleado* list, int len)
         }while(seguir=='s');
     }
 
-
+    return todoOk;
 }
 
 int infoSueldos(eEmpleado* list, int len,float* pFloatProm,float* pFloatTotal, int* pIntCant)
@@ -386,7 +377,7 @@ int infoSueldos(eEmpleado* list, int len,float* pFloatProm,float* pFloatTotal, i
 }
 
 
-void hardCodearEmpleados(eEmpleado vec[], int tam)
+void hardCodearEmpleados(eEmpleado* list, int len)
 {
     eEmpleado empleados [13]= {
     {100, "juan", "perez",  19994 , 2,1},
@@ -401,9 +392,9 @@ void hardCodearEmpleados(eEmpleado vec[], int tam)
     {109, "sabrina", "nosee", 25000 , 1,1},
     {110, "victoria", "sanchez", 30000 , 2,1},
     {111, "noseqponer", "bastaaa",  4000, 4,1}};
-    for(int i=0;i<tam;i++)
+    for(int i=0;i<len;i++)
     {
-        vec[i]= empleados[i];
+        list[i]= empleados[i];
     }
 
 }
@@ -424,3 +415,35 @@ int listEmpty(eEmpleado* list, int len)
 
 }
 
+int ajustarNombre(char* name)
+{
+    int i=0;
+    int todoOk=-1;
+
+    nombreMinuscula(name);
+    name[0]=toupper(name[0]);
+
+    while(name[i] != '\0')
+    {
+        if(name[i] == ' ')
+        {
+            name[i+1] = toupper(name[i+1]);
+            todoOk=0;
+        }
+        i++;
+    }
+
+    return todoOk;
+}
+
+void nombreMinuscula(char* name)
+{
+    int i=0;
+
+    while(name[i] != '\0')
+    {
+        name[i]=tolower(name[i]);
+        i++;
+    }
+
+}
