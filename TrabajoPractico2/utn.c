@@ -230,10 +230,6 @@ int validarMail(char *pAux)
                 if(pAux[i]==46)
                 {
                     flagPunto=1;
-                    if(*(pAux+i)==46)
-                    {
-                        flagPunto=0;
-                    }
                 }
             }
         }
