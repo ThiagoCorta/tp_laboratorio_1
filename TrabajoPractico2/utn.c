@@ -62,7 +62,7 @@ int utn_getFlotante(float*pFloat,int reintentos,char* msg,char*msgError,float mi
 
 int getCadena(char* pAux,int limite)
 {
-    char auxString[4096];
+    char auxString[2000];
     int todoOk =-1;
     if (pAux != NULL && limite >0)
     {

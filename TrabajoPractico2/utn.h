@@ -48,7 +48,7 @@ int utn_getCadena(char *pAux,int limite,int reintentos,char* msj,char*msjError);
  */
 int utn_getEmail(char* pString, int limite, int reintentos, char* msg, char* msgError);
 
-/** \brief toma datos en forma de cadena de caracteres, que se usa para validar float, int e char.
+/** \brief toma datos en forma de cadena de caracteres, que se usa para validar float, int e char, usa un AUX muy grande, ingresas una cadena de caracteres, va al ultimo caracter o al fin de la linea \n y \0 para darle fin a la cadena y luego se lee de nuevo la cadena si es menor o igual al limite que se paso lo guarda en el puntero.
  *
  * \param se le pasa un puntero al auxiliar donde se desea guardar la cadena.
  * \param un limite de la cadena.
