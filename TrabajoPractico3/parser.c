@@ -53,7 +53,20 @@ int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
      */
 int parser_EmployeeFromBinary(FILE* pFile, LinkedList* pArrayListEmployee)
 {
+    int todoOk=-1;
 
-    return 1;
+    Employee* new;
+    if(pFile!=NULL && pArrayListEmployee!= NULL){
+        while(!feof(pFile))
+        {
+            new=employee_new();
+            fread(new,sizeof(Employee),1,pFile);
+            //Falta completar.....
+
+        }
+        todoOk=0;
+    }
+
+    return todoOk;
 }
 

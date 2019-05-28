@@ -94,7 +94,7 @@ int employee_getSalary(Employee* this,int* salary)
 
 
 
-Employee* new_employee()
+Employee* employee_new()
 {
     Employee* new;
     new = (Employee*) malloc(sizeof(Employee));
@@ -116,7 +116,7 @@ Employee* employee_newParametros(char* idStr,char* nameStr,char* hoursWorkedStr,
 {
 
     Employee* new;
-    new=new_employee();
+    new=employee_new();
     if(idStr!=NULL && nameStr!=NULL && hoursWorkedStr!=NULL && new!=NULL){
         employee_setId(new,atoi(idStr));
         employee_setName(new,nameStr);
