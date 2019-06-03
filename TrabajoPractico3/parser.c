@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "LinkedList.h"
 #include "Employee.h"
+#include "utn.h"
+#include "parser.h"
 
 /** \brief Parsea los datos los datos de los empleados desde el archivo data.csv (modo texto).
  *
@@ -15,6 +17,7 @@ int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
     Employee* new;
     char buffer[4][30];
     int cant;
+    int todoOk=-1;
 
     if(pFile!=NULL && pArrayListEmployee!=NULL)
     {
@@ -27,6 +30,7 @@ int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
             if(new!=NULL)
             {
                 ll_add(pArrayListEmployee,new);
+                todoOk=1;
 ;           }
             if(cant < 4)
             {
@@ -42,7 +46,7 @@ int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
             }
         }
     }
-    return 1;
+    return todoOk;
 }
     /** \brief Parsea los datos los datos de los empleados desde el archivo data.csv (modo binario).
      *
@@ -54,14 +58,20 @@ int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
 int parser_EmployeeFromBinary(FILE* pFile, LinkedList* pArrayListEmployee)
 {
     int todoOk=-1;
-
+    int cant;
     Employee* new;
     if(pFile!=NULL && pArrayListEmployee!= NULL){
-        while(!feof(pFile))
-        {
+        while(!feof(pFile)){
             new=employee_new();
-            fread(new,sizeof(Employee),1,pFile);
-            //Falta completar.....
+           cant = fread(new,sizeof(Employee),1,pFile);
+            if( cant < 1){
+                if(feof(pFile)){
+                break;
+                }
+            }
+            if(new!=NULL){
+                 ll_add(pArrayListEmployee,new);
+            }
 
         }
         todoOk=0;

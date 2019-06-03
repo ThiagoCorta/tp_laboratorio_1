@@ -24,4 +24,8 @@ int employee_getHoursWorked(Employee* this,int* hoursWorked);
 int employee_setSalary(Employee* this,int salary);
 int employee_getSalary(Employee* this,int* salary);
 
+int printEmployee(Employee* this);
+
+int menu();
+int menuModify();
 #endif // employee_H_INCLUDED

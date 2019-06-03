@@ -53,34 +53,55 @@
 	"LinkedList.h"
 	"Employee.h"
 
-1533133026 source:c:\users\thiag\desktop\trabajopractico3\controller.c
+1559549275 source:c:\users\thiag\desktop\trabajopractico3\controller.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
 	"Employee.h"
+	"utn.h"
+	"parser.h"
 
 1533133022 c:\users\thiag\desktop\trabajopractico3\linkedlist.h
 
-1559021210 c:\users\thiag\desktop\trabajopractico3\employee.h
+1559548952 c:\users\thiag\desktop\trabajopractico3\employee.h
 
-1559023695 source:c:\users\thiag\desktop\trabajopractico3\employee.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	"Employee.h"
-
-1559022074 source:c:\users\thiag\desktop\trabajopractico3\main.c
+1559548952 source:c:\users\thiag\desktop\trabajopractico3\employee.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
-	"Controller.h"
 	"Employee.h"
+	"utn.h"
+	"parser.h"
+	<string.h>
+
+1559548675 source:c:\users\thiag\desktop\trabajopractico3\main.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+	"utn.h"
+	"parser.h"
+	"Controller.h"
 
 1533133022 c:\users\thiag\desktop\trabajopractico3\controller.h
 
-1559023688 source:c:\users\thiag\desktop\trabajopractico3\parser.c
+1559549253 source:c:\users\thiag\desktop\trabajopractico3\parser.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
 	"Employee.h"
+	"utn.h"
+	"parser.h"
+
+1559546035 source:c:\users\thiag\desktop\trabajopractico3\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<ctype.h>
+	"utn.h"
+
+1557511049 c:\users\thiag\desktop\trabajopractico3\utn.h
+
+1533133022 c:\users\thiag\desktop\trabajopractico3\parser.h
 
