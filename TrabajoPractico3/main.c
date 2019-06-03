@@ -32,29 +32,34 @@ int main()
         switch(menu())
         {
             case 1:
-                controller_loadFromText("data.csv",listaEmpleados);
-                printf("\nLos datos fueron cargados correctamente..");
+                if(controller_loadFromText("data.csv",listaEmpleados)==1){
+                    printf("\nLos datos fueron cargados correctamente..");
+                    flagText=1;
+                }else{
+                printf("Error al cargar archivos.\n");
+                }
                 system("pause");
-                flagText=1;
                 break;
-
             case 2:
-                controller_loadFromBinary("data.csv",listaEmpleados);
-                printf("\nLos datos fueron cargados correctamente..");
-                system("pause");
-                flagBin=1;
+               if(controller_loadFromBinary("data.bin",listaEmpleados)==1){
+                   printf("\nLos datos fueron cargados correctamente..");
+                    flagBin=1;
+               }else{
+               printf("Error al cargar archivos.\n");
+               }
+               system("pause");
                 break;
             case 3:
                 if(controller_addEmployee(listaEmpleados)==1){
                     printf("\nEmpleado agregado exitosamente!!\n");
-                    system("pause");
                 }
+                system("pause");
                 break;
             case 4:
                 if(controller_editEmployee(listaEmpleados)==1){
                     printf("\nEmpleado modificado exitosamente!!\n");
-                    system("pause");
                 }
+                system("pause");
                 break;
             case 5:
                 printf("Baja incompleta.");
@@ -71,13 +76,17 @@ int main()
                 system("pause");
                 break;
             case 9:
-                controller_saveAsBinary("data.csv",listaEmpleados);
+                controller_saveAsBinary("data.bin",listaEmpleados);
                 system("pause");
                 break;
 
             case 10:
                 seguir='n';
                     break;
+            default:
+                printf("Ing opcion valida.\n");
+                system("pause");
+                break;
         }
     }while(seguir=='s');
     return 0;

@@ -68,10 +68,7 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
  */
 int controller_addEmployee(LinkedList* pArrayListEmployee)
 {
-    int todoOk=-1;
-    int auxInt;
-    int auxId;
-    int auxHoras;
+    int todoOk=-1,auxInt,auxId,auxHoras;
     char auxChar[50];
     Employee* new;
 
@@ -106,10 +103,7 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
 int controller_editEmployee(LinkedList* pArrayListEmployee)
 {
     Employee* new;
-    int todoOk=-1;
-    int auxInt;
-    int auxId;
-    int len;
+    int todoOk=-1,auxInt,auxId,len;
     char auxChar[50];
     char seguir='s';
 
@@ -178,10 +172,10 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
     Employee* aux;
     int todoOk=-1;
     int len;
-    int id;
+   /* int id;
     int hours;
     int salary;
-    char name[50];
+    char name[50];*/
 
     if(pArrayListEmployee!=NULL){
         len=ll_len(pArrayListEmployee);
@@ -223,7 +217,35 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
 {
-    return 1;
+    FILE* f;
+    Employee* emp;
+    int len,id,salary,hours,todoOk=-1,i;
+    char name[50];
+
+    if(path!=NULL && pArrayListEmployee!=NULL){
+        len=ll_len(pArrayListEmployee);
+        f=fopen(path,"a");
+        if(f!=NULL){
+            for(i=0;i<len;i++){
+                emp=(Employee*)ll_get(pArrayListEmployee,i);
+                employee_getId(emp,&id);
+                employee_getName(emp,name);
+                employee_getHoursWorked(emp,&hours);
+                employee_getSalary(emp,&salary);
+                fprintf(f,"%d,%s,%d,%d\n",id,name,hours,salary);
+            }
+            fclose(f);
+            if(i==len){
+                printf("Guardado exitoso!!\n");
+                todoOk=1;
+            }
+        }else{
+            printf("No se pudo abrir el archivo..\n");
+        }
+
+    }
+
+    return todoOk;
 }
 
 /** \brief Guarda los datos de los empleados en el archivo data.csv (modo binario).
@@ -235,6 +257,30 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
  */
 int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
 {
-    return 1;
+    FILE* f;
+    int todoOk=-1;
+    int i;
+    int len= ll_len(pArrayListEmployee);
+    Employee* emp;
+    if(path != NULL && pArrayListEmployee!= NULL){
+        f=fopen(path,"ab");
+        if(f!=NULL){
+                todoOk=0;
+                for(i=0;i<len;i++){
+                    emp=ll_get(pArrayListEmployee,i);
+                    if(emp!= NULL)
+                        fwrite(emp,sizeof(Employee),1,f);
+                }
+                if(i==len){
+                    todoOk=1;
+                    printf("Guardado exitoso!!");
+                }
+                fclose(f);
+            }else{
+            printf("No se pudo abrir el archivo...\n");
+            }
+    }
+    return todoOk;
+
 }
 
