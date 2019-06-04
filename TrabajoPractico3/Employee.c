@@ -6,68 +6,75 @@
 #include "parser.h"
 #include <string.h>
 
+
+void employee_delete(Employee* this){
+    if(this!=NULL){
+        free(this);
+    }
+
+}
 int employee_setId(Employee* this,int id)
 {
-    int todoOk=-1;
+    int todoOk=0;
     if(this!=NULL && id>0)
     {
        this->id=id;
-        todoOk=0;
+        todoOk=1;
     }
     return todoOk;
 }
 
 int employee_getId(Employee* this,int* id)
 {
-    int todoOk=-1;
+    int todoOk=0;
     if(this!=NULL && id!=NULL)
     {
         *id=this->id;
-        todoOk=0;
+        todoOk=1;
     }
     return todoOk;
 }
 
 int employee_setName(Employee* this,char* name)
 {
-    int todoOk=-1;
-    if(this!=NULL && name!=NULL)
+    int todoOk=0;
+    if(this!=NULL && name!=NULL && strlen(name)>3)
     {
         strcpy(this->name,name);
-        todoOk=0;
+        todoOk=1;
     }
     return todoOk;
 }
 
 int employee_getName(Employee* this,char* name)
 {
-    int todoOk=-1;
+    int todoOk=0;
     if(this!=NULL && name!=NULL)
     {
         strcpy(name,this->name);
-        todoOk=0;
+        todoOk=1;
     }
     return todoOk;
 }
 
 int employee_setHoursWorked(Employee* this,int hoursWorked)
 {
-    int todoOk=-1;
+    int todoOk=0;
     if(this!=NULL && hoursWorked>0)
     {
         this->hoursWorked=hoursWorked;
-        todoOk=0;
+        todoOk=1;
     }
     return todoOk;
 }
 
 int employee_getHoursWorked(Employee* this,int* hoursWorked)
 {
-    int todoOk=-1;
+    int todoOk=0;
     if(this!=NULL && hoursWorked!=NULL)
     {
         *hoursWorked=this->hoursWorked;
-        todoOk=0;
+        todoOk=1;
     }
     return todoOk;
 }
@@ -75,22 +82,22 @@ int employee_getHoursWorked(Employee* this,int* hoursWorked)
 
 int employee_setSalary(Employee* this,int salary)
 {
-    int todoOk=-1;
-    if(this!=NULL)
+    int todoOk=0;
+    if(this!=NULL && salary>0)
     {
         this->salary=salary;
-        todoOk=0;
+        todoOk=1;
     }
     return todoOk;
 }
 
 int employee_getSalary(Employee* this,int* salary)
 {
-    int todoOk=-1;
+    int todoOk=0;
     if(this!=NULL && salary!=NULL)
     {
         *salary=this->salary;
-        todoOk=0;
+        todoOk=1;
     }
     return todoOk;
 }
@@ -107,8 +114,8 @@ Employee* employee_new()
         new->salary =0;
         new->hoursWorked=0;
     }else{
-        printf("\nNo se pudo conseguir memoria para un nuevo empleado...\n");
-        system("pause");
+        free(new);
+        new=NULL;
     }
     return new;
 
@@ -117,17 +124,21 @@ Employee* employee_new()
 
 Employee* employee_newParametros(char* idStr,char* nameStr,char* hoursWorkedStr, char* salary)
 {
-
     Employee* new;
     new=employee_new();
-    if(idStr!=NULL && nameStr!=NULL && hoursWorkedStr!=NULL && new!=NULL){
-        employee_setId(new,atoi(idStr));
-        employee_setName(new,nameStr);
-        employee_setSalary(new,atof(salary));
-        employee_setHoursWorked(new,atoi(hoursWorkedStr));
-        return new;
+    if(idStr!=NULL && nameStr!=NULL && hoursWorkedStr!=NULL && salary!=NULL && new!=NULL){
+        if(!employee_setId(new,atoi(idStr))||
+        !employee_setName(new,nameStr)||
+        !employee_setSalary(new,atoi(salary))||
+        !employee_setHoursWorked(new,atoi(hoursWorkedStr))){
+            free(new);
+            new=NULL;
+        }/*else{
+            free(new);
+            new=NULL;
+        }*/
     }
-    return NULL;
+    return new;
 }
 
 int menu()
@@ -136,14 +147,14 @@ int menu()
     system("cls");
     printf("Menu:\n\n");
     printf("1. Cargar los datos de los empleados desde el archivo data.csv (modo texto).\n");
-    printf("2. Cargar los datos de los empleados desde el archivo data.csv (modo binario).\n");
+    printf("2. Cargar los datos de los empleados desde el archivo data.bin (modo binario).\n");
     printf("3. Alta de empleado\n");
     printf("4. Modificar datos de empleado\n");
     printf("5. Baja de empleado\n");
     printf("6. Listar empleados\n");
     printf("7. Ordenar empleados\n");
     printf("8. Guardar los datos de los empleados en el archivo data.csv (modo texto).\n");
-    printf("9. Guardar los datos de los empleados en el archivo data.csv (modo binario).\n");
+    printf("9. Guardar los datos de los empleados en el archivo data.bin (modo binario).\n");
     printf("10. Salir\n\n");
     printf("Ingresar opcion : ");
 
@@ -174,7 +185,7 @@ int menuModify()
 
 int printEmployee(Employee* this)
 {
-    int todoOk=-1;
+    int todoOk=0;
 
     if(this!=NULL){
         printf("%5d %12s %12d %10d\n", this->id,this->name,this->hoursWorked,this->salary);

@@ -16,7 +16,7 @@
 int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
 {
     FILE* f;
-    int todoOk=-1;
+    int todoOk=0;
     if(path!=NULL && pArrayListEmployee!=NULL)
     {
         f=fopen(path,"r");
@@ -41,7 +41,7 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
 int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
 {
     FILE* f;
-    int todoOk=-1;
+    int todoOk=0;
 
     if(path!=NULL && pArrayListEmployee!=NULL){
         f=fopen(path,"rb");
@@ -50,7 +50,7 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
             fclose(f);
             todoOk=1;
         }else{
-        printf("\nEl archivo no se pudo abrir\n");
+            todoOk=0;
         }
 
     }
@@ -68,7 +68,7 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
  */
 int controller_addEmployee(LinkedList* pArrayListEmployee)
 {
-    int todoOk=-1,auxInt,auxId,auxHoras;
+    int todoOk=0,auxInt,auxId,auxHoras;
     char auxChar[50];
     Employee* new;
 
@@ -81,12 +81,14 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
         new=employee_new();
         if(new!=NULL)
         {
-            employee_setId(new,auxId);
-            employee_setName(new,auxChar);
-            employee_setHoursWorked(new,auxHoras);
-            employee_setSalary(new,auxInt);
-            ll_add(pArrayListEmployee,new);
-            todoOk=1;
+            if(employee_setId(new,auxId)&&
+            employee_setName(new,auxChar)&&
+            employee_setHoursWorked(new,auxHoras)&&
+            employee_setSalary(new,auxInt)){
+                ll_add(pArrayListEmployee,new);
+                todoOk=1;
+            }
+
         }
     }
 
@@ -103,7 +105,7 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
 int controller_editEmployee(LinkedList* pArrayListEmployee)
 {
     Employee* new;
-    int todoOk=-1,auxInt,auxId,len;
+    int todoOk=0,auxInt,auxId,len;
     char auxChar[50];
     char seguir='s';
 
@@ -118,18 +120,21 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
                     switch(menuModify()){
                         case 1:
                             utn_getCadena(auxChar,50,20,"\nIngresar nuevo nombre del empleado : ", "\nError ingresar nombre valido\n");
-                            employee_setName(new,auxChar);
+                           if(employee_setName(new,auxChar)){
                             todoOk=1;
+                           }
                             break;
                         case 2:
                             utn_getEntero(&auxInt,20,"\nIngresar nuevas horas trabajadas :","\nError ingresar horas validas \n",0,9999);
-                            employee_setHoursWorked(new,auxInt);
-                            todoOk=1;
+                            if(employee_setHoursWorked(new,auxInt)){
+                                todoOk=1;
+                            }
                             break;
                         case 3:
                             utn_getEntero(&auxInt,20,"\nIngresar nuevo sueldo :","\nError ingresar sueldo valido\n",5000,200000);
-                            employee_setSalary(new,auxInt);
-                            todoOk=1;
+                            if(employee_setSalary(new,auxInt)){
+                                 todoOk=1;
+                            }
                             break;
                         case 4:
                             seguir='n';
@@ -157,7 +162,10 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_removeEmployee(LinkedList* pArrayListEmployee)
 {
-    return 1;
+    int todoOk=0;
+
+
+    return todoOk;
 }
 
 /** \brief Listar empleados
@@ -170,7 +178,7 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
 int controller_ListEmployee(LinkedList* pArrayListEmployee)
 {
     Employee* aux;
-    int todoOk=-1;
+    int todoOk=0;
     int len;
    /* int id;
     int hours;
@@ -219,7 +227,7 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
 {
     FILE* f;
     Employee* emp;
-    int len,id,salary,hours,todoOk=-1,i;
+    int len,id,salary,hours,todoOk=0,i;
     char name[50];
 
     if(path!=NULL && pArrayListEmployee!=NULL){
@@ -236,11 +244,10 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
             }
             fclose(f);
             if(i==len){
-                printf("Guardado exitoso!!\n");
                 todoOk=1;
             }
         }else{
-            printf("No se pudo abrir el archivo..\n");
+            todoOk=0;
         }
 
     }
@@ -258,29 +265,27 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
 int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
 {
     FILE* f;
-    int todoOk=-1;
+    int todoOk=0;
     int i;
     int len= ll_len(pArrayListEmployee);
     Employee* emp;
     if(path != NULL && pArrayListEmployee!= NULL){
-        f=fopen(path,"ab");
+        f=fopen(path,"wb");
         if(f!=NULL){
-                todoOk=0;
                 for(i=0;i<len;i++){
                     emp=ll_get(pArrayListEmployee,i);
                     if(emp!= NULL)
                         fwrite(emp,sizeof(Employee),1,f);
-                }
+                        }
                 if(i==len){
                     todoOk=1;
-                    printf("Guardado exitoso!!");
+                    fclose(f);
+                }else{
+                    todoOk=0;
                 }
-                fclose(f);
-            }else{
-            printf("No se pudo abrir el archivo...\n");
             }
     }
-    return todoOk;
 
+    return todoOk;
 }
 
