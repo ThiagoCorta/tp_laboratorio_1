@@ -24,6 +24,7 @@ int employee_getHoursWorked(Employee* this,int* hoursWorked);
 int employee_setSalary(Employee* this,int salary);
 int employee_getSalary(Employee* this,int* salary);
 
+int ordenarXSueldo(void* emp1, void* emp2);
 int printEmployee(Employee* this);
 
 int menu();

@@ -115,13 +115,13 @@
 
 1559609591 c:\users\alumno\desktop\trabajopractico3\linkedlist.h
 
-1559609591 c:\users\alumno\desktop\trabajopractico3\employee.h
+1559611153 c:\users\alumno\desktop\trabajopractico3\employee.h
 
 1559602490 c:\users\alumno\desktop\trabajopractico3\utn.h
 
 1559602490 c:\users\alumno\desktop\trabajopractico3\parser.h
 
-1559609591 source:c:\users\alumno\desktop\trabajopractico3\employee.c
+1559611153 source:c:\users\alumno\desktop\trabajopractico3\employee.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
@@ -141,7 +141,7 @@
 
 1559602490 c:\users\alumno\desktop\trabajopractico3\controller.h
 
-1559609835 source:c:\users\alumno\desktop\trabajopractico3\parser.c
+1559610279 source:c:\users\alumno\desktop\trabajopractico3\parser.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"

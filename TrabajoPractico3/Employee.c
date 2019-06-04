@@ -195,6 +195,26 @@ int printEmployee(Employee* this)
     return todoOk;
 }
 
+int ordenarXSueldo(void* emp1, void* emp2){
+    int todoOk=0;
+    Employee* p1;
+    Employee* p2;
+
+    if(emp1!=NULL && emp2!=NULL){
+         p1 = (Employee*)emp1;
+         p2 = (Employee*)emp2;
+
+         if(p1->salary > p2->salary){
+            todoOk=1;
+         }else if(p1->salary < p2->salary){
+            todoOk=-1;
+         }else if(p1->salary == p2->salary){
+            todoOk=0;
+        }
+    }
+
+    return todoOk;
+}
 
 
 

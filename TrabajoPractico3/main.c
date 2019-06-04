@@ -20,7 +20,7 @@
     10. Salir
 *****************************************************/
 
-
+int ordenarXSueldo(void*, void*);
 int main()
 {
     char seguir= 's';
@@ -69,7 +69,8 @@ int main()
                 system("pause");
                 break;
             case 7:
-                printf("Sort incompleto.");
+                ///0 sueldos iguales , 1 sueldos mayor a menor , -1 sueldo menor a mayor!
+                ll_sort(listaEmpleados,ordenarXSueldo,1);
                 break;
             case 8:
                 controller_saveAsText("data.csv",listaEmpleados);
