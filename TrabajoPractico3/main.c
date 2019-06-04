@@ -71,7 +71,7 @@ int main()
                 system("pause");
                 break;
             case 6:
-                if(flagAdd==1 || flagBin == 1 || flagText==1){
+                if(flagAdd|| flagBin || flagText){
                     controller_ListEmployee(listaEmpleados);
                 }else{
                     printf("\nNo hay empleados cargados que mostrar, agregue o bien cargue desde el archivo\n");
@@ -79,7 +79,7 @@ int main()
                 system("pause");
                 break;
             case 7:
-                if(flagAdd==1 || flagBin == 1 || flagText==1){
+                if(flagAdd || flagBin || flagText){
                     if(controller_sortEmployee(listaEmpleados)==1){
                         printf("\nSe ordeno la lista de empleados!\n");
                     }else{
@@ -91,7 +91,7 @@ int main()
                 system("pause");
                 break;
             case 8:
-                if(flagAdd==1 || flagBin == 1 || flagText==1){
+                if(flagAdd || flagBin || flagText ){
                     if(controller_saveAsText("data.csv",listaEmpleados)==1){
                         printf("\nDatos de empleados guardados en el archivo TXT con exito!\n");
                     }else{
@@ -103,7 +103,7 @@ int main()
                 system("pause");
                 break;
             case 9:
-                if(flagAdd==1 || flagBin == 1 || flagText==1){
+                if(flagAdd || flagBin || flagText){
                     if(controller_saveAsBinary("data.bin",listaEmpleados)==1){
                         printf("\nDatos de empleados guardados en el archivo BIN con exito!\n");
                     }else{
