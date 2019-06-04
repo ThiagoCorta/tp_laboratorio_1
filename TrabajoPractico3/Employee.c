@@ -155,11 +155,10 @@ int menu()
     printf("7. Ordenar empleados\n");
     printf("8. Guardar los datos de los empleados en el archivo data.csv (modo texto).\n");
     printf("9. Guardar los datos de los empleados en el archivo data.bin (modo binario).\n");
-    printf("10. Salir\n\n");
-    printf("Ingresar opcion : ");
+    printf("10. Salir\n");
 
     fflush(stdin);
-    scanf("%d",&opc);
+    utn_getEntero(&opc,20,"\nIngresar opcion : ","\nError ingresar opcion valida.",1,10);
 
     return opc;
 
@@ -173,11 +172,10 @@ int menuModify()
     printf("1. Editar nombre : \n");
     printf("2. Editar horas trabajadas : \n");
     printf("3. Editar sueldo : \n");
-    printf("4. Salir\n\n");
-    printf("Ingresar opcion : ");
+    printf("4. Salir\n");
 
     fflush(stdin);
-    scanf("%d",&opc);
+    utn_getEntero(&opc,20,"\nIngresar opcion : ","\nError ingresar opcion valida.",1,4);
 
     return opc;
 
@@ -216,5 +214,41 @@ int ordenarXSueldo(void* emp1, void* emp2){
     return todoOk;
 }
 
+int compareByName(void* emp1, void* emp2){
+    int todoOk=0;
+    Employee* p1;
+    Employee* p2;
 
+    if(emp1!=NULL && emp2!=NULL){
+         p1 = (Employee*)emp1;
+         p2 = (Employee*)emp2;
+
+         if(strcmp(p1->name,p2->name)>0){
+            todoOk=1;
+         }else if(strcmp(p1->name,p2->name)<0){
+            todoOk=-1;
+         }else if(strcmp(p1->name,p2->name)==0){
+            todoOk=0;
+        }
+    }
+
+    return todoOk;
+}
+
+int employee_isValidEmp(Employee* emp){
+    int todoOk=0,id,hours,salary;
+    char name[50];
+
+    if(emp!=NULL){
+        employee_getId(emp,&id);
+        employee_getHoursWorked(emp,&hours);
+        employee_getSalary(emp,&salary);
+        employee_getName(emp,name);
+
+        if(id>0 && hours >0 && salary >0 && name !=NULL){
+            todoOk=1;
+        }
+    }
+    return todoOk;
+}
 

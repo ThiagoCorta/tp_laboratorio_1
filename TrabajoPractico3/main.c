@@ -25,24 +25,22 @@ int main()
 {
     char seguir= 's';
     LinkedList* listaEmpleados = ll_newLinkedList();
-    int flagText=0;
-    int flagBin=0;
-
+    int flagText=0, flagBin=0, flagAdd=0;
     do{
         switch(menu())
         {
             case 1:
                 if(controller_loadFromText("data.csv",listaEmpleados)==1){
-                    printf("\nLos datos fueron cargados correctamente..");
+                    printf("\nLos datos fueron cargados correctamente.\n");
                     flagText=1;
                 }else{
-                printf("Error al cargar archivos.\n");
+                printf("\nError al cargar archivos.\n");
                 }
                 system("pause");
                 break;
             case 2:
                if(controller_loadFromBinary("data.bin",listaEmpleados)==1){
-                   printf("\nLos datos fueron cargados correctamente..");
+                   printf("\nLos datos fueron cargados correctamente.\n");
                     flagBin=1;
                }else{
                printf("Error al cargar archivos.\n");
@@ -52,6 +50,9 @@ int main()
             case 3:
                 if(controller_addEmployee(listaEmpleados)==1){
                     printf("\nEmpleado agregado exitosamente!!\n");
+                    flagAdd=1;
+                }else{
+                    printf("\nError al ingresar el empleado.\n");
                 }
                 system("pause");
                 break;
@@ -62,22 +63,56 @@ int main()
                 system("pause");
                 break;
             case 5:
-                printf("Baja incompleta.");
+                if(controller_removeEmployee(listaEmpleados)==1){
+                    printf("\nEl empleado fue dado de baja de forma exitosa!!\n");
+                }else{
+                    printf("\nNo se dio de baja al empleado.\n");
+                }
+                system("pause");
                 break;
             case 6:
-                controller_ListEmployee(listaEmpleados);
+                if(flagAdd==1 || flagBin == 1 || flagText==1){
+                    controller_ListEmployee(listaEmpleados);
+                }else{
+                    printf("\nNo hay empleados cargados que mostrar, agregue o bien cargue desde el archivo\n");
+                }
                 system("pause");
                 break;
             case 7:
-                ///0 sueldos iguales , 1 sueldos mayor a menor , -1 sueldo menor a mayor!
-                ll_sort(listaEmpleados,ordenarXSueldo,1);
+                if(flagAdd==1 || flagBin == 1 || flagText==1){
+                    if(controller_sortEmployee(listaEmpleados)==1){
+                        printf("\nSe ordeno la lista de empleados!\n");
+                    }else{
+                        printf("\nNo se pudo ordenar la lista de empleados.\n");
+                    }
+                }else{
+                    printf("\nNo hay empleados cargados que ordenar, agregue o bien cargue desde el archivo\n");
+                }
+                system("pause");
                 break;
             case 8:
-                controller_saveAsText("data.csv",listaEmpleados);
+                if(flagAdd==1 || flagBin == 1 || flagText==1){
+                    if(controller_saveAsText("data.csv",listaEmpleados)==1){
+                        printf("\nDatos de empleados guardados en el archivo TXT con exito!\n");
+                    }else{
+                        printf("\nNo se pudo guardar los datos en el archivo.\n");
+                    }
+                }else{
+                    printf("\nNo hay nada que guardar.\n");
+                }
                 system("pause");
                 break;
             case 9:
-                controller_saveAsBinary("data.bin",listaEmpleados);
+                if(flagAdd==1 || flagBin == 1 || flagText==1){
+                    if(controller_saveAsBinary("data.bin",listaEmpleados)==1){
+                        printf("\nDatos de empleados guardados en el archivo BIN con exito!\n");
+                    }else{
+                        printf("\nNo se pudo guardar los datos en el archivo.\n");
+                    }
+                }else{
+                    printf("\nNo hay nada que guardar.\n");
+                }
+
                 system("pause");
                 break;
 
@@ -90,6 +125,7 @@ int main()
                 break;
         }
     }while(seguir=='s');
+    free(listaEmpleados);
     return 0;
 }
 

@@ -105,3 +105,5 @@ int isLetras(char*pAux);
  *
  */
 int validarMail(char *pAux);
+
+char preguntarSiEstaSeguro(char* msg, char* msgerror);

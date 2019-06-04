@@ -25,6 +25,8 @@ int employee_setSalary(Employee* this,int salary);
 int employee_getSalary(Employee* this,int* salary);
 
 int ordenarXSueldo(void* emp1, void* emp2);
+int compareByName(void* emp1, void* emp2);
+int employee_isValidEmp(Employee* emp);
 int printEmployee(Employee* this);
 
 int menu();

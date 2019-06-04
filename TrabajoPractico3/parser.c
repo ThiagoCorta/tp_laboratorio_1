@@ -21,9 +21,7 @@ int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
 
     if(pFile!=NULL && pArrayListEmployee!=NULL)
     {
-        fscanf(pFile, "%[^,],%[^,],%[^,],%[^\n],\n", buffer[0], buffer[1], buffer[2], buffer[3]);
-        printf("%s %s %s %s\n", buffer[0], buffer[1], buffer[2], buffer[3]);
-
+      //  fscanf(pFile, "%[^,],%[^,],%[^,],%[^\n],\n", buffer[0], buffer[1], buffer[2], buffer[3]);
         while(!feof(pFile)){
             cant =  fscanf(pFile, "%[^,],%[^,],%[^,],%[^\n],\n", buffer[0], buffer[1], buffer[2], buffer[3]);
             new=employee_newParametros(buffer[0],buffer[1],buffer[2],buffer[3]);
@@ -60,8 +58,12 @@ int parser_EmployeeFromBinary(FILE* pFile, LinkedList* pArrayListEmployee)
             new=employee_new();
            cant = fread(new,sizeof(Employee),1,pFile);
             if(new!=NULL){
-                 ll_add(pArrayListEmployee,new);
-                 todoOk=1;
+                if(employee_isValidEmp(new)==1){
+                    ll_add(pArrayListEmployee,new);
+                    todoOk=1;
+                }else{
+                    employee_delete(new);
+                }
             }
             if(cant<1){
                 if(feof(pFile)){

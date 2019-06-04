@@ -10,7 +10,7 @@
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
+ * \return int 1 todoOk - 0 todoMal
  *
  */
 int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
@@ -25,7 +25,7 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
             fclose(f);
             todoOk=1;
         }else{
-        printf("\nNo se pudo abrir el archivo!\n");
+            todoOk=0;
         }
     }
     return todoOk;
@@ -35,7 +35,7 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
+ * \return int 1 todoOk - 0 todoMal
  *
  */
 int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
@@ -63,7 +63,7 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
+ * \return int 1 todoOk - 0 todoMal
  *
  */
 int controller_addEmployee(LinkedList* pArrayListEmployee)
@@ -74,9 +74,9 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
 
     if(pArrayListEmployee!=NULL)
     {
-        utn_getEntero(&auxId,20,"\nIngresar ID del empleado : ","\nError ingresar ID valido \n",1,9999);
+        utn_getEntero(&auxId,20,"\nIngresar id del empleado : ","\nError ingresar ID valido : ",0,99999);
         utn_getCadena(auxChar,50,20,"\nIngresar nombre del empleado : ","\nError ingresar nombre valido : \n");
-        utn_getEntero(&auxHoras,20,"\nIngresar horas trabajadas : ", "\nError ingresar horas validas: \n",0,200);
+        utn_getEntero(&auxHoras,20,"\nIngresar horas trabajadas : ", "\nError ingresar horas validas: \n",0,350);
         utn_getEntero(&auxInt,20,"\nIngresar sueldo del empleado : ", "\nError ingresar sueldo valido \n",5000,200000);
         new=employee_new();
         if(new!=NULL)
@@ -99,7 +99,7 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
+ * \return int 1 todoOk - 0 todoMal
  *
  */
 int controller_editEmployee(LinkedList* pArrayListEmployee)
@@ -111,7 +111,7 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
 
     if(pArrayListEmployee!=NULL){
         len = ll_len(pArrayListEmployee);
-        utn_getEntero(&auxId,20,"\nIngresar ID del empleado que desea modificar : ", "\nError ingresar ID valido\n",0,9999);
+        utn_getEntero(&auxId,20,"\nIngresar ID del empleado que desea modificar : ", "\nError ingresar ID valido\n",1,99999);
         for(int i=0;i<len;i++){
             new=(Employee*)ll_get(pArrayListEmployee,i);
             employee_getId(new,&auxInt);
@@ -157,14 +157,31 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
+ * \return int 1 todoOk - 0 todoMal
  *
  */
 int controller_removeEmployee(LinkedList* pArrayListEmployee)
 {
-    int todoOk=0;
+    int todoOk=0,len,idIng,i,idAux;
+    Employee* this;
 
-
+    if(pArrayListEmployee!=NULL){
+        len = ll_len(pArrayListEmployee);
+        utn_getEntero(&idIng,20,"\nIngresar ID del empleado que desea dar de baja : ", "\nError ingresar un numero ID valido: ",0,9999);
+        for(i = 0;i<len;i++){
+            this = (Employee*)ll_get(pArrayListEmployee,i);
+            employee_getId(this,&idAux);
+            if(idAux==idIng){
+            if(preguntarSiEstaSeguro("\nSeguro que desea dar de baja a este empleado ?: ", "Error ing s/n")=='s'){
+                ll_remove(pArrayListEmployee,i);
+                todoOk=1;
+                break;
+            }else{
+                break;
+                }
+            }
+        }
+    }
     return todoOk;
 }
 
@@ -172,7 +189,7 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
+ * \return int 1 todoOk - 0 todoMal
  *
  */
 int controller_ListEmployee(LinkedList* pArrayListEmployee)
@@ -208,19 +225,25 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
+ * \return int 1 todoOk - 0 todoMal
  *
  */
 int controller_sortEmployee(LinkedList* pArrayListEmployee)
 {
-    return 1 ;
+    int todoOk=0;
+    if(pArrayListEmployee!=NULL){
+        ll_sort(pArrayListEmployee,compareByName,1);
+        todoOk=1;
+    }
+
+    return todoOk;
 }
 
 /** \brief Guarda los datos de los empleados en el archivo data.csv (modo texto).
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
+ * \return int 1 todoOk - 0 todoMal
  *
  */
 int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
@@ -232,7 +255,11 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
 
     if(path!=NULL && pArrayListEmployee!=NULL){
         len=ll_len(pArrayListEmployee);
-        f=fopen(path,"a");
+      //  if(fopen(path,"r")!=NULL){
+             f=fopen(path,"w");
+      //  }else{
+       //     f=fopen(path,"w");
+       // }
         if(f!=NULL){
             for(i=0;i<len;i++){
                 emp=(Employee*)ll_get(pArrayListEmployee,i);
@@ -259,7 +286,7 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
+ * \return int 1 todoOk - 0 todoMal
  *
  */
 int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
@@ -270,7 +297,11 @@ int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
     int len= ll_len(pArrayListEmployee);
     Employee* emp;
     if(path != NULL && pArrayListEmployee!= NULL){
-        f=fopen(path,"wb");
+       //if(fopen(path,"rb")!=NULL){
+             f=fopen(path,"wb");
+      //  }else{
+           // f=fopen(path,"wb");
+      //  }
         if(f!=NULL){
                 for(i=0;i<len;i++){
                     emp=ll_get(pArrayListEmployee,i);

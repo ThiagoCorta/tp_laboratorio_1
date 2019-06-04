@@ -9,7 +9,7 @@
 
 int utn_getEntero(int* pEntero,int reintentos,char* msg,char*msgError,int min,int max)
 {
-    int todoOk = -1;
+    int todoOk = 0;
     int auxInt;
 
     if(pEntero!=NULL&& msg !=NULL && msgError!=NULL && min<= max && reintentos>=0)
@@ -18,10 +18,10 @@ int utn_getEntero(int* pEntero,int reintentos,char* msg,char*msgError,int min,in
         {
             reintentos--;
             printf("%s",msg);
-            if(getInt(&auxInt) == 0 && auxInt >= min && auxInt<=max)
+            if(getInt(&auxInt) == 1 && auxInt >= min && auxInt<=max)
             {
                 *pEntero= auxInt;
-                todoOk = 0;
+                todoOk = 1;
                 break;
             }
             else
@@ -35,7 +35,7 @@ int utn_getEntero(int* pEntero,int reintentos,char* msg,char*msgError,int min,in
 }
 int utn_getFlotante(float*pFloat,int reintentos,char* msg,char*msgError,float min,float max)
 {
-    int todoOk = -1;
+    int todoOk = 0;
     float auxFloat;
 
     if(pFloat!=NULL&& msg !=NULL && msgError!=NULL && min<= max && reintentos>=0)
@@ -44,10 +44,10 @@ int utn_getFlotante(float*pFloat,int reintentos,char* msg,char*msgError,float mi
         {
             reintentos--;
             printf("%s",msg);
-            if(getFloat(&auxFloat) == 0 && auxFloat >= min && auxFloat<=max)
+            if(getFloat(&auxFloat) == 1 && auxFloat >= min && auxFloat<=max)
             {
                 *pFloat= auxFloat;
-                todoOk = 0;
+                todoOk = 1;
                 break;
             }
             else
@@ -63,7 +63,7 @@ int utn_getFlotante(float*pFloat,int reintentos,char* msg,char*msgError,float mi
 int getCadena(char* pAux,int limite)
 {
     char auxString[2000];
-    int todoOk =-1;
+    int todoOk =0;
     if (pAux != NULL && limite >0)
     {
         fflush(stdin);
@@ -75,7 +75,7 @@ int getCadena(char* pAux,int limite)
         if(strlen(auxString)<= limite)
         {
             strncpy(pAux,auxString,limite);
-            todoOk=0;
+            todoOk=1;
         }
     }
     return todoOk;
@@ -84,17 +84,17 @@ int getCadena(char* pAux,int limite)
 int getInt(int* pAux)
 {
     char auxString[200];
-    int todoOk =-1;
-    if(getCadena(auxString,200)==0 && isInt(auxString)==0)
+    int todoOk =0;
+    if(getCadena(auxString,200)==1 && isInt(auxString)==1)
     {
         *pAux=atoi(auxString);
-        todoOk=0;
+        todoOk=1;
     }
     return todoOk;
 }
 int isInt(char *pAux)
 {
-    int todoOk=-1;
+    int todoOk=0;
     int i=0;
     do
     {
@@ -106,14 +106,14 @@ int isInt(char *pAux)
     }while (i<strlen(pAux));
     if(i==strlen(pAux))
     {
-        todoOk=0;
+        todoOk=1;
     }
     return todoOk;
 }
 
 int isFloat(char* pAux)
 {
-    int todoOk=-1;
+    int todoOk=0;
     int i=0;
     int contadorDePuntos=0;
     do
@@ -134,7 +134,7 @@ int isFloat(char* pAux)
     }while (i<strlen(pAux));
     if(i==strlen(pAux))
     {
-        todoOk=0;
+        todoOk=1;
     }
     return todoOk;
 }
@@ -142,25 +142,25 @@ int isFloat(char* pAux)
 int getFloat(float*pAux)
 {
     char auxString[200];
-    int todoOk =-1;
+    int todoOk =0;
     if(getCadena(auxString,200)==0 && isFloat(auxString)==0)
     {
         *pAux=atof(auxString);
-        todoOk=0;
+        todoOk=1;
     }
     return todoOk;
 }
 
 int utn_getCadena(char *pAux,int limite,int reintentos,char* msj,char*msjError){
-    int todoOk=-1;
+    int todoOk=0;
     char auxString[limite];
     if(pAux!=NULL && limite >0 && reintentos >=0){
         do{
             reintentos--;
             printf("%s",msj);
-            if(getCadena(auxString,limite)==0 && isLetras(auxString)==0){
+            if(getCadena(auxString,limite)==1 && isLetras(auxString)==1){
                 strncpy(pAux,auxString,limite);
-                todoOk=0;
+                todoOk=1;
                 break;
             }else
                 printf("%s",msjError);
@@ -170,7 +170,7 @@ int utn_getCadena(char *pAux,int limite,int reintentos,char* msj,char*msjError){
 }
 
 int isLetras(char*pAux){
-    int todoOk=-1;
+    int todoOk=0;
     int i=0;
     if(pAux!=NULL){
         do{
@@ -180,29 +180,12 @@ int isLetras(char*pAux){
             i++;
         }while(i<strlen(pAux));
         if(i==strlen(pAux)){
-            todoOk=0;
+            todoOk=1;
         }
     }
     return todoOk;
 }
 
-int validateFlag(int* flag, char* msgError)
-{
-    int todoOk=-1;
-
-    if(*flag==1)
-    {
-        todoOk=0;
-    }
-    else
-    {
-        printf("%s", msgError);
-        system("pause");
-
-    }
-
-    return todoOk;
-}
 
 int validarMail(char *pAux)
 {
@@ -272,4 +255,23 @@ int utn_getEmail(char* pString, int limite, int reintentos, char* msg, char* msg
         while(reintentos>=0);
     }
     return todoOk;
+}
+
+char preguntarSiEstaSeguro(char* msg, char* msgerror)
+{
+    char confirma;
+
+    if(msg!=NULL && msgerror!=NULL){
+        printf("%s", msg);
+        fflush(stdin);
+        confirma = tolower(getche());
+
+        while(confirma!='s' && confirma!='n')
+        {
+            printf("%s", msgerror);
+            fflush(stdin);
+            confirma = tolower(getche());
+        }
+    }
+    return confirma;
 }
