@@ -38,7 +38,7 @@ int employee_getId(Employee* this,int* id)
 int employee_setName(Employee* this,char* name)
 {
     int todoOk=0;
-    if(this!=NULL && name!=NULL && strlen(name)>3)
+    if(this!=NULL && name!=NULL && strlen(name)>1)
     {
         strcpy(this->name,name);
         todoOk=1;
@@ -110,11 +110,11 @@ Employee* employee_new()
     new = (Employee*) malloc(sizeof(Employee));
     if(new != NULL){
         new->id = 0;
-        strcpy(new->name, "");
-        new->salary =0;
+        strcpy(new->name," ");
+        new->salary=0;
         new->hoursWorked=0;
     }else{
-        free(new);
+        employee_delete(new);
         new=NULL;
     }
     return new;
@@ -131,7 +131,7 @@ Employee* employee_newParametros(char* idStr,char* nameStr,char* hoursWorkedStr,
         !employee_setName(new,nameStr)||
         !employee_setSalary(new,atoi(salary))||
         !employee_setHoursWorked(new,atoi(hoursWorkedStr))){
-            free(new);
+            employee_delete(new);
             new=NULL;
         }/*else{
             free(new);
