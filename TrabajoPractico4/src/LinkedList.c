@@ -56,10 +56,11 @@ static Node* getNode(LinkedList* this, int nodeIndex)
     int len = ll_len(this);
 
     if(this !=NULL && nodeIndex >= 0 && nodeIndex < len){
-        if(nodeIndex==0){
-            pNode=this->pFirstNode;
-        }else{
-            pNode=(this->pFirstNode+(nodeIndex-1))->pNextNode;
+        pNode= this->pFirstNode;
+
+        while(nodeIndex>0){
+            pNode = pNode->pNextNode;
+            nodeIndex--;
         }
     }
     return pNode;
@@ -91,9 +92,12 @@ Node* test_getNode(LinkedList* this, int nodeIndex)
 static int addNode(LinkedList* this, int nodeIndex,void* pElement)
 {
     int returnAux = -1, len = ll_len(this);
-    Node* pNode = getNode(this,nodeIndex);
+    Node* pNode;
     if(this !=NULL && nodeIndex >= 0 && nodeIndex < len){
+        pNode=getNode(this,nodeIndex);
+        if(pNode!=NULL){
 
+        }
     }
 
 
