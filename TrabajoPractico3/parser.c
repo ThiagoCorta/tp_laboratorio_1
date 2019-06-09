@@ -15,7 +15,7 @@
 int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
 {
     char buffer[4][30];
-    int cant,todoOk=0,flag=0;
+    int cant,todoOk=0;
     Employee* employee;
 
     if(pFile!=NULL && pArrayListEmployee!=NULL)

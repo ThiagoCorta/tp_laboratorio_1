@@ -53,9 +53,10 @@
 	"LinkedList.h"
 	"Employee.h"
 
-1559633083 source:c:\users\thiag\desktop\trabajopractico3\controller.c
+1560121907 source:c:\users\thiag\desktop\trabajopractico3\controller.c
 	<stdio.h>
 	<stdlib.h>
+	<string.h>
 	"LinkedList.h"
 	"Employee.h"
 	"utn.h"
@@ -74,7 +75,7 @@
 	"parser.h"
 	<string.h>
 
-1559672935 source:c:\users\thiag\desktop\trabajopractico3\main.c
+1560121498 source:c:\users\thiag\desktop\trabajopractico3\main.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
@@ -85,7 +86,7 @@
 
 1559611365 c:\users\thiag\desktop\trabajopractico3\controller.h
 
-1559797271 source:c:\users\thiag\desktop\trabajopractico3\parser.c
+1560122841 source:c:\users\thiag\desktop\trabajopractico3\parser.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"

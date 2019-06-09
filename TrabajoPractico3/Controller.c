@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "LinkedList.h"
 #include "Employee.h"
 #include "utn.h"
@@ -69,15 +70,18 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
 int controller_addEmployee(LinkedList* pArrayListEmployee)
 {
     int todoOk=0,auxInt,auxId,auxHoras;
-    char auxChar[50];
+    char auxChar[50], auxLastName[50];
     Employee* new;
 
     if(pArrayListEmployee!=NULL)
     {
         utn_getEntero(&auxId,20,"\nIngresar id del empleado : ","\nError ingresar ID valido : ",0,99999);
         utn_getCadena(auxChar,50,20,"\nIngresar nombre del empleado : ","\nError ingresar nombre valido : \n");
+        utn_getCadena(auxLastName,50,20,"\nIngresar apellido del empleado : ","\nError ingresar apellido valido : \n");
+        strcat(auxChar, " ");
+        strcat(auxChar, auxLastName);
         utn_getEntero(&auxHoras,20,"\nIngresar horas trabajadas : ", "\nError ingresar horas validas: \n",0,350);
-        utn_getEntero(&auxInt,20,"\nIngresar sueldo del empleado : ", "\nError ingresar sueldo valido \n",5000,200000);
+        utn_getEntero(&auxInt,20,"\nIngresar sueldo del empleado : ", "\nError ingresar sueldo valido \n",5000,2000000);
         new=employee_new();
         if(new!=NULL)
         {
