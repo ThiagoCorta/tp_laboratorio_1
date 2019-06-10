@@ -1,2 +1,2 @@
-# tp_laboratorio_1
+# UTN - Thiago Corta
 Trabajos practico UTN 1er cuatrimestre.
