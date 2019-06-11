@@ -486,7 +486,7 @@ int ll_contains(LinkedList* this, void* pElement)
 int ll_containsAll(LinkedList* this,LinkedList* this2)
 {
     int returnAux = -1;//,len;
-  /* // Node* pNode;
+   // Node* pNode;
     void* pAux;
     if(this!=NULL && this2!=NULL){
         returnAux=0;
@@ -500,7 +500,7 @@ int ll_containsAll(LinkedList* this,LinkedList* this2)
                 break;
             }
         }
-    }*/
+    }
 
     return returnAux;
 }
