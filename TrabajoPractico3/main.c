@@ -20,7 +20,7 @@
     10. Salir
 *****************************************************/
 
-int ordenarXSueldo(void*, void*);
+
 int main()
 {
     char seguir= 's';
