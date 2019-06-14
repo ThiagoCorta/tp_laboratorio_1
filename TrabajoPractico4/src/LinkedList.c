@@ -484,7 +484,7 @@ LinkedList* ll_clone(LinkedList* this)
     Node* pAuxNode;
 
     if(this!=NULL){
-        cloneArray=(LinkedList*)malloc(sizeof(LinkedList));
+        cloneArray=ll_newLinkedList();
         if(cloneArray!=NULL){
             for(int i=0; i<ll_len(this);i++){
                 pAuxNode=getNode(this,i);
@@ -519,26 +519,24 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
                 for(int j=i+1;j<ll_len(this);j++){
                         pAuxNext=getNode(this,j);
                     if(pAuxNode!=NULL && pAuxNext!=NULL){
-                        if(order==1 && (pFunc(pAuxNode->pElement,pAuxNext->pElement)==1)){
+                        if((order==1 && (pFunc(pAuxNode->pElement,pAuxNext->pElement)==1)) ||
+                           (order==0 && (pFunc(pAuxNode->pElement,pAuxNext->pElement)==-1))){
                             pAux=pAuxNode->pElement;
                             pAuxNode->pElement=pAuxNext->pElement;
                             pAuxNext->pElement=pAux;
                             returnAux=0;
-                        }else if (order==0 && (pFunc(pAuxNode->pElement,pAuxNext->pElement)==-1 && order==0)){
-                            pAux=pAuxNext->pElement;
-                            pAuxNext->pElement=pAuxNode->pElement;
-                            pAuxNode->pElement=pAux;
-                            returnAux=0;
+//                        }else if ){
+////                             pAux=pAuxNode->pElement;
+////                            pAuxNode->pElement=pAuxNext->pElement;
+////                            pAuxNext->pElement=pAux;
+//                            returnAux=0;
+//                        }
                         }
                     }
-
                 }
-
             }
-
     }
     return returnAux;
-
-
 }
+
 
