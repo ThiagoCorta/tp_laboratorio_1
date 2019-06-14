@@ -417,18 +417,19 @@ int ll_contains(LinkedList* this, void* pElement)
 int ll_containsAll(LinkedList* this,LinkedList* this2)
 {
    int returnAux = -1, k=0, len;
+   //void* pAux;
     Node* pAuxNode;
     if(this!=NULL && this2!=NULL){
-            len=ll_len(this2);
+        len=ll_len(this2);
         for(int i=0; i<len;i++){
             pAuxNode = getNode(this2,i);
+            //pAux=ll_get(this2,i);
             if(pAuxNode!=NULL){
                 if(ll_contains(this,pAuxNode->pElement)!=-1){
-                k++;
+                    k++;
                 }
             }
         }
-        printf("%d %d\n", k, len);
         if(k==len){
              returnAux=1;
         }else{
@@ -513,23 +514,32 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
     void* pAux;
 
     if(this!=NULL && pFunc!=NULL && (order==0 || order==1) && ll_len(this)>0){
-        pAuxNode=this->pFirstNode;
         if(pAuxNode!=NULL){
-            pAuxNext=pAuxNode->pNextNode;
                 for(int i=0; i<ll_len(this)-1;i++){
-                    if((pFunc(pAuxNode->pElement,pAuxNext->pElement)==1 && order==1)){
-                        pAux=pAuxNode->pElement;
-                        pAuxNode->pElement=pAuxNext->pElement;
-                        pAuxNext->pElement=pAux;
-                    }else if ((pFunc(pAuxNode->pElement,pAuxNext->pElement)==-1 && order==0)){
-                        pAux=pAuxNode->pElement;
-                        pAuxNode->pElement=pAuxNext->pElement;
-                        pAuxNext->pElement=pAux;
+                        pAuxNode=getNode(this,i);
+                    for(int j=i+1;j<ll_len(this);j++){
+                            pAuxNext=getNode(this,j);
+                        if(pAuxNode!=NULL && pAuxNext!=NULL){
+                            if(order==1 && (pFunc(pAuxNode->pElement,pAuxNext->pElement)==1)){
+                                pAux=pAuxNode->pElement;
+                                pAuxNode->pElement=pAuxNext->pElement;
+                                pAuxNext->pElement=pAux;
+                                returnAux=0;
+                            }else if (order==0 && (pFunc(pAuxNode->pElement,pAuxNext->pElement)==-1 && order==0)){
+                                pAux=pAuxNext->pElement;
+                                pAuxNext->pElement=pAuxNode->pElement;
+                                pAuxNode->pElement=pAux;
+                                returnAux=0;
+                            }
+                        }
+
                     }
+
                 }
         }
     }
     return returnAux;
+
 
 }
 
