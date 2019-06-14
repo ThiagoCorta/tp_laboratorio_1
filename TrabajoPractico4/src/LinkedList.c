@@ -514,29 +514,28 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
     void* pAux;
 
     if(this!=NULL && pFunc!=NULL && (order==0 || order==1) && ll_len(this)>0){
-        if(pAuxNode!=NULL){
-                for(int i=0; i<ll_len(this)-1;i++){
-                        pAuxNode=getNode(this,i);
-                    for(int j=i+1;j<ll_len(this);j++){
-                            pAuxNext=getNode(this,j);
-                        if(pAuxNode!=NULL && pAuxNext!=NULL){
-                            if(order==1 && (pFunc(pAuxNode->pElement,pAuxNext->pElement)==1)){
-                                pAux=pAuxNode->pElement;
-                                pAuxNode->pElement=pAuxNext->pElement;
-                                pAuxNext->pElement=pAux;
-                                returnAux=0;
-                            }else if (order==0 && (pFunc(pAuxNode->pElement,pAuxNext->pElement)==-1 && order==0)){
-                                pAux=pAuxNext->pElement;
-                                pAuxNext->pElement=pAuxNode->pElement;
-                                pAuxNode->pElement=pAux;
-                                returnAux=0;
-                            }
+            for(int i=0; i<ll_len(this)-1;i++){
+                    pAuxNode=getNode(this,i);
+                for(int j=i+1;j<ll_len(this);j++){
+                        pAuxNext=getNode(this,j);
+                    if(pAuxNode!=NULL && pAuxNext!=NULL){
+                        if(order==1 && (pFunc(pAuxNode->pElement,pAuxNext->pElement)==1)){
+                            pAux=pAuxNode->pElement;
+                            pAuxNode->pElement=pAuxNext->pElement;
+                            pAuxNext->pElement=pAux;
+                            returnAux=0;
+                        }else if (order==0 && (pFunc(pAuxNode->pElement,pAuxNext->pElement)==-1 && order==0)){
+                            pAux=pAuxNext->pElement;
+                            pAuxNext->pElement=pAuxNode->pElement;
+                            pAuxNode->pElement=pAux;
+                            returnAux=0;
                         }
-
                     }
 
                 }
-        }
+
+            }
+
     }
     return returnAux;
 
