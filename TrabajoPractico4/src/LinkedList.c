@@ -212,7 +212,7 @@ int ll_remove(LinkedList* this,int index)
     int returnAux = -1;
     Node* pAuxNode;
     Node* pNode;
-
+/*
 
     if(this!= NULL && index>=0 && index<this->size){
         returnAux=0;
@@ -246,7 +246,22 @@ int ll_remove(LinkedList* this,int index)
             }
         }
     }
-return returnAux;
+return returnAux;*/
+    if(this!= NULL && index>=0 && index<this->size){
+        if(index==0){
+            pAuxNode = getNode(this,index);
+            this->pFirstNode=pAuxNode->pNextNode;
+        }else{
+            pAuxNode=getNode(this,index);
+            pNode=getNode(this,index-1);
+            pNode->pNextNode=pAuxNode->pNextNode;
+        }
+        this->size--;
+        returnAux=0;
+        free(pAuxNode);
+    }
+
+    return returnAux;
 }
 
 
@@ -416,24 +431,21 @@ int ll_contains(LinkedList* this, void* pElement)
 */
 int ll_containsAll(LinkedList* this,LinkedList* this2)
 {
-   int returnAux = -1, k=0, len;
-   //void* pAux;
-    Node* pAuxNode;
+   int returnAux = -1,len;
+   void* pAux;
     if(this!=NULL && this2!=NULL){
+        returnAux=0;
         len=ll_len(this2);
         for(int i=0; i<len;i++){
-            pAuxNode = getNode(this2,i);
-            //pAux=ll_get(this2,i);
-            if(pAuxNode!=NULL){
-                if(ll_contains(this,pAuxNode->pElement)!=-1){
-                    k++;
+            pAux=ll_get(this2,i);
+            if(pAux!=NULL){
+                if(ll_contains(this,pAux)==0){
+                    returnAux=0;
+                    break;
+                }else{
+                    returnAux=1;
                 }
             }
-        }
-        if(k==len){
-             returnAux=1;
-        }else{
-            returnAux=0;
         }
     }
     return returnAux;
@@ -525,12 +537,6 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
                             pAuxNode->pElement=pAuxNext->pElement;
                             pAuxNext->pElement=pAux;
                             returnAux=0;
-//                        }else if ){
-////                             pAux=pAuxNode->pElement;
-////                            pAuxNode->pElement=pAuxNext->pElement;
-////                            pAuxNext->pElement=pAux;
-//                            returnAux=0;
-//                        }
                         }
                     }
                 }
